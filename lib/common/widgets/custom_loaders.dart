@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 
-class CustomLoader extends StatefulWidget {
-  const CustomLoader({Key? key}) : super(key: key);
+class NetworkLoadingAnimation extends StatefulWidget {
+  const NetworkLoadingAnimation({Key? key}) : super(key: key);
 
   @override
-  State<CustomLoader> createState() => _CustomLoaderState();
+  State<NetworkLoadingAnimation> createState() =>
+      _NetworkLoadingAnimationState();
 }
 
-class _CustomLoaderState extends State<CustomLoader>
+class _NetworkLoadingAnimationState extends State<NetworkLoadingAnimation>
     with SingleTickerProviderStateMixin {
   late final AnimationController _animationController = AnimationController(
     vsync: this,
@@ -36,5 +37,29 @@ class _CustomLoaderState extends State<CustomLoader>
                 child: Image.asset('assets/images/star.png')),
           );
         });
+  }
+}
+
+class ImageLoadingAnimation extends StatelessWidget {
+  final double? height;
+  final double? width;
+
+  const ImageLoadingAnimation({
+    Key? key,
+    this.height = 100,
+    this.width,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: height,
+      width: width ?? height,
+      child: const Center(
+        child: CircularProgressIndicator(
+          strokeWidth: 2,
+        ),
+      ),
+    );
   }
 }

@@ -117,8 +117,15 @@ class _CategoryScreenState extends State<CategoryScreen> {
                           i < categoryAndSubCategories[activeCategory]!.length;
                           i++)
                         SubCategory(
-                            subCategoryName:
-                                categoryAndSubCategories[activeCategory]![i]),
+                          subCategoryName:
+                              categoryAndSubCategories[activeCategory]!
+                                  .keys
+                                  .toList()[i],
+                          subSubCategoryNames:
+                              categoryAndSubCategories[activeCategory]!
+                                  .values
+                                  .toList()[i],
+                        ),
                     ],
                   ),
                 ),

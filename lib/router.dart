@@ -1,6 +1,8 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:jumier/constants.dart';
 import 'package:jumier/features/product/filter/filter_screen.dart';
+import 'package:jumier/features/product/filter/select_options_screen.dart';
 import 'package:jumier/features/product/screens/product_details_screen.dart';
 import 'package:jumier/features/product/screens/see_all_category_screen.dart';
 
@@ -21,6 +23,17 @@ Route<dynamic> generateRoute(RouteSettings routeSettings) {
     case FilterScreen.routeName:
       return MaterialPageRoute(
         builder: (_) => const FilterScreen(),
+      );
+
+    case SelectOptionScreen.routeName:
+      Map<String, dynamic> arguments =
+          routeSettings.arguments as Map<String, dynamic>;
+      return CupertinoPageRoute(
+        builder: (_) => SelectOptionScreen(
+          options: arguments['options'],
+          title: arguments['title'],
+          selectedOption: arguments['selectedOption'],
+        ),
       );
 
     default:

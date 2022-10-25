@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:jumier/common/widgets/appbars.dart';
 import 'package:jumier/common/widgets/carousel.dart';
-import 'package:jumier/common/widgets/custom_loader.dart';
+import 'package:jumier/common/widgets/custom_loaders.dart';
 import 'package:jumier/constants.dart';
 import 'package:jumier/features/home/widgets/flash_sales.dart';
 import 'package:jumier/features/home/widgets/home_categories.dart';
@@ -24,7 +24,7 @@ class _HomeScreenState extends State<HomeScreen> {
       body: ModalProgressHUD(
         opacity: 0.6,
         color: backgroundGrey,
-        progressIndicator: const CustomLoader(),
+        progressIndicator: const NetworkLoadingAnimation(),
         inAsyncCall: _isLoading,
         child: SingleChildScrollView(
           child: Column(

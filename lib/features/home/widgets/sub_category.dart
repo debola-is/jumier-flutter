@@ -1,17 +1,22 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:jumier/common/widgets/custom_loaders.dart';
 import 'package:jumier/common/widgets/custom_network_image.dart';
 import 'package:jumier/constants.dart';
 import 'package:jumier/features/product/screens/product_details_screen.dart';
 
 class SubCategory extends StatelessWidget {
   final String subCategoryName;
+  final List<String> subSubCategoryNames;
   const SubCategory({
     super.key,
     required this.subCategoryName,
+    required this.subSubCategoryNames,
   });
 
   @override
   Widget build(BuildContext context) {
+    double imageHeight = (screenWidth(context) - 130) / 6;
     void navigateToProductDetails() {
       Navigator.pushNamed(context, ProductDetailsScreen.routeName,
           arguments: 'ProductName');
@@ -60,7 +65,7 @@ class SubCategory extends StatelessWidget {
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 3,
             ),
-            itemCount: 6,
+            itemCount: subSubCategoryNames.length,
             itemBuilder: (context, index) {
               return GestureDetector(
                 onTap: () {
@@ -69,19 +74,27 @@ class SubCategory extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    CustomNetworkImage(
-                      imageSource:
+                    CachedNetworkImage(
+                      imageUrl:
                           'https://ng.jumia.is/unsafe/fit-in/500x500/filters:fill(white)/product/46/502258/1.jpg?4825',
-                      height: (screenWidth(context) - 130) / 6,
+                      height: imageHeight,
+                      placeholder: (context, url) => Padding(
+                        padding: EdgeInsets.symmetric(
+                            horizontal: imageHeight * 0.8,
+                            vertical: imageHeight * 0.3),
+                        child: const ImageLoadingAnimation(),
+                      ),
+                      errorWidget: (context, url, error) =>
+                          const Icon(Icons.error),
                     ),
                     const SizedBox(
                       height: 10,
                     ),
-                    const Text(
-                      'Subcategory Name',
+                    Text(
+                      subSubCategoryNames[index],
                       textAlign: TextAlign.center,
-                      style: TextStyle(fontSize: 12),
-                      overflow: TextOverflow.fade,
+                      style: const TextStyle(fontSize: 10),
+                      overflow: TextOverflow.ellipsis,
                       maxLines: 2,
                     ),
                   ],

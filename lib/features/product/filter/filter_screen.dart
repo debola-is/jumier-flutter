@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:jumier/common/widgets/custom_button.dart';
-import 'package:jumier/common/widgets/custom_loader.dart';
 import 'package:jumier/constants.dart';
+import 'package:jumier/features/product/filter/select_options_screen.dart';
+import 'package:jumier/features/product/filter/widgets/filter_appbar.dart';
 import 'package:jumier/features/user/widgets/account_action.dart';
 
 List<int> discounts = [10, 20, 30, 40, 50];
 List<int> ratings = [1, 2, 3, 4];
 List<int> sellerScores = [20, 40, 60, 80];
-List<String> shippedFrom = ['abroad', 'local'];
+List<String> shippedFromList = ['abroad', 'local'];
+List<String> deliveryList = ['express delivery'];
 
 class FilterScreen extends StatefulWidget {
   static const String routeName = '/filter-screen';
@@ -19,10 +21,12 @@ class FilterScreen extends StatefulWidget {
 }
 
 class _FilterScreenState extends State<FilterScreen> {
-  String selectedCategory = categoryAndSubCategories.keys.toList()[0];
+  String _selectedCategory = categoryAndSubCategories.keys.toList()[0];
   int _appliedDiscount = 0;
   int _rating = 0;
   int _sellerScore = 0;
+  int? _shippedFrom;
+  int? _delivery;
 
   RangeValues _priceRange = const RangeValues(0, 200);
   @override
@@ -30,54 +34,24 @@ class _FilterScreenState extends State<FilterScreen> {
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(60),
-        child: AppBar(
-          elevation: 0,
-          backgroundColor: Colors.white,
-          leading: GestureDetector(
-            onTap: () {
-              Navigator.pop(context);
-            },
-            child: const Icon(
-              Icons.close,
-              size: 24,
-              color: Colors.black,
+        child: FilterAppBar(
+          title: 'Filter',
+          trailing: Text(
+            'CLEAR ALL',
+            style: TextStyle(
+              color: shadeOfOrange,
+              fontSize: 12,
             ),
           ),
-          titleSpacing: 0,
-          title: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              const Text(
-                'Filter',
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 20,
-                ),
-              ),
-              GestureDetector(
-                onTap: () {
-                  setState(() {
-                    _priceRange = const RangeValues(0, 200);
-                    selectedCategory =
-                        categoryAndSubCategories.keys.toList()[0];
-                    _appliedDiscount = 0;
-                    _rating = 0;
-                    _sellerScore = 0;
-                  });
-                },
-                child: Padding(
-                  padding: const EdgeInsets.only(right: 20),
-                  child: Text(
-                    'CLEAR ALL',
-                    style: TextStyle(
-                      color: shadeOfOrange,
-                      fontSize: 12,
-                    ),
-                  ),
-                ),
-              ),
-            ],
-          ),
+          trailingOnTap: () {
+            setState(() {
+              _priceRange = const RangeValues(0, 200);
+              _selectedCategory = categoryAndSubCategories.keys.toList()[0];
+              _appliedDiscount = 0;
+              _rating = 0;
+              _sellerScore = 0;
+            });
+          },
         ),
       ),
       body: SingleChildScrollView(
@@ -100,6 +74,7 @@ class _FilterScreenState extends State<FilterScreen> {
                 trailingWidget: DropdownButtonHideUnderline(
                   child: DropdownButton(
                     alignment: Alignment.centerRight,
+                    style: TextStyle(color: Colors.red),
                     icon: const Padding(
                       padding: EdgeInsets.only(left: 8.0),
                       child: Icon(
@@ -108,10 +83,10 @@ class _FilterScreenState extends State<FilterScreen> {
                         color: Colors.black54,
                       ),
                     ),
-                    value: selectedCategory,
+                    value: _selectedCategory,
                     onChanged: (value) {
                       setState(() {
-                        selectedCategory = value!;
+                        _selectedCategory = value!;
                       });
                     },
                     items: [
@@ -468,7 +443,23 @@ class _FilterScreenState extends State<FilterScreen> {
                 thickness: 1.5,
                 color: backgroundGrey,
               ),
-              AccountAction(onTap: () {}, title: 'Shipped From'),
+              AccountAction(
+                  onTap: () async {
+                    final result = await Navigator.pushNamed(
+                      context,
+                      SelectOptionScreen.routeName,
+                      arguments: {
+                        'options': shippedFromList,
+                        'title': 'Shipping Location',
+                        'selectedOption': _shippedFrom,
+                      },
+                    );
+                    if (result != null) {
+                      _shippedFrom = result as int;
+                    }
+                    print(_shippedFrom);
+                  },
+                  title: 'Shipped From'),
               Divider(
                 height: 2,
                 indent: 20,
@@ -476,15 +467,30 @@ class _FilterScreenState extends State<FilterScreen> {
                 thickness: 1.5,
                 color: backgroundGrey,
               ),
-              AccountAction(onTap: () {}, title: 'Express Delivery'),
-              const CustomLoader(),
+              AccountAction(
+                  onTap: () async {
+                    final result = await Navigator.pushNamed(
+                      context,
+                      SelectOptionScreen.routeName,
+                      arguments: {
+                        'options': deliveryList,
+                        'title': 'Express Delivery',
+                        'selectedOption': _delivery,
+                      },
+                    );
+                    if (result != null) {
+                      _delivery = result as int;
+                    }
+                    print(_delivery);
+                  },
+                  title: 'Express Delivery'),
             ],
           ),
         ),
       ),
       backgroundColor: backgroundGrey,
       bottomNavigationBar: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
         child: CustomButton(
           onTap: () {},
           text: 'SAVE (100)',
