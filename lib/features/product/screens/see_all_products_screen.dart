@@ -9,20 +9,20 @@ enum Layout {
   list,
 }
 
-class SeeAllCategoryScreen extends StatefulWidget {
+class SeeAllProductsScreen extends StatefulWidget {
   static const routeName = '/see-all-category-screen';
   final String categoryName;
 
-  const SeeAllCategoryScreen({
+  const SeeAllProductsScreen({
     super.key,
     required this.categoryName,
   });
 
   @override
-  State<SeeAllCategoryScreen> createState() => _SeeAllCategoryScreenState();
+  State<SeeAllProductsScreen> createState() => _SeeAllProductsScreenState();
 }
 
-class _SeeAllCategoryScreenState extends State<SeeAllCategoryScreen> {
+class _SeeAllProductsScreenState extends State<SeeAllProductsScreen> {
   var selectedLayout = Layout.grid;
   @override
   Widget build(BuildContext context) {

@@ -78,6 +78,8 @@ class SubCategory extends StatelessWidget {
                       imageUrl:
                           'https://ng.jumia.is/unsafe/fit-in/500x500/filters:fill(white)/product/46/502258/1.jpg?4825',
                       height: imageHeight,
+                      memCacheHeight: 125,
+                      memCacheWidth: 125,
                       placeholder: (context, url) => Padding(
                         padding: EdgeInsets.symmetric(
                             horizontal: imageHeight * 0.8,

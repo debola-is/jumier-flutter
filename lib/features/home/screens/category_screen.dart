@@ -3,7 +3,7 @@ import 'package:jumier/common/widgets/custom_scroll_behaviour.dart';
 import 'package:jumier/common/widgets/appbars.dart';
 import 'package:jumier/constants.dart';
 import 'package:jumier/features/home/widgets/sub_category.dart';
-import 'package:jumier/features/product/screens/see_all_category_screen.dart';
+import 'package:jumier/features/product/screens/see_all_products_screen.dart';
 
 class CategoryScreen extends StatefulWidget {
   const CategoryScreen({super.key});
@@ -136,7 +136,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
   }
 
   void navigateToAllCategoryProducts() {
-    Navigator.pushNamed(context, SeeAllCategoryScreen.routeName,
+    Navigator.pushNamed(context, SeeAllProductsScreen.routeName,
         arguments: categoryAndSubCategories.keys.toList()[_activeIndex]);
   }
 }

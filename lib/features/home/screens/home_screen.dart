@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:jumier/common/widgets/appbars.dart';
-import 'package:jumier/common/widgets/carousel.dart';
+import 'package:jumier/features/home/widgets/carousel.dart';
 import 'package:jumier/common/widgets/custom_loaders.dart';
 import 'package:jumier/constants.dart';
 import 'package:jumier/features/home/widgets/flash_sales.dart';
 import 'package:jumier/features/home/widgets/home_categories.dart';
-import 'package:jumier/features/home/widgets/top_rated.dart';
+import 'package:jumier/features/home/widgets/limited_deals.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -29,19 +29,17 @@ class _HomeScreenState extends State<HomeScreen> {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              const SizedBox(
-                height: 5,
-              ),
               Container(
                 height: 30,
                 width: double.infinity,
-                color: Colors.red.shade700,
+                color: Colors.red.shade800,
                 child: const Center(
                   child: Text(
-                    'FREE DELIVERY IN LAGOS, IBADAN AND ABUJA',
+                    'Free Delivery in Lagos, Ibadan & Abuja',
                     style: TextStyle(
                       color: Colors.white,
-                      fontSize: 12,
+                      fontSize: 14,
+                      fontWeight: FontWeight.w500,
                     ),
                   ),
                 ),
@@ -50,8 +48,9 @@ class _HomeScreenState extends State<HomeScreen> {
                 height: 10,
               ),
               const CarouselImages(),
-              const SizedBox(
+              Container(
                 height: 10,
+                color: backgroundGrey,
               ),
               SizedBox(
                 height: 150,

@@ -3,13 +3,13 @@ import 'package:flutter/material.dart';
 class CustomNetworkImage extends StatelessWidget {
   final String imageSource;
   final double height;
-  final double? width;
+  final double width;
   final BoxFit fit;
   const CustomNetworkImage({
     super.key,
     required this.imageSource,
-    this.height = 100,
-    this.width,
+    required this.height,
+    required this.width,
     this.fit = BoxFit.contain,
   });
 
@@ -21,11 +21,17 @@ class CustomNetworkImage extends StatelessWidget {
       height: height,
       width: width,
       fit: fit,
+      imageCacheHeight: height.floor(),
+      imageCacheWidth: width.floor(),
+      placeholderCacheHeight: height.floor(),
+      placeholderCacheWidth: width.floor(),
       imageErrorBuilder: (context, error, stackTrace) => Image.asset(
         'assets/images/jumier.png',
         height: height,
         width: width,
         fit: fit,
+        cacheHeight: height.floor(),
+        cacheWidth: width.floor(),
       ),
     );
   }

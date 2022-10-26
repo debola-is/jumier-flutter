@@ -21,14 +21,30 @@ class FilterScreen extends StatefulWidget {
 }
 
 class _FilterScreenState extends State<FilterScreen> {
-  String _selectedCategory = categoryAndSubCategories.keys.toList()[0];
-  int _appliedDiscount = 0;
-  int _rating = 0;
-  int _sellerScore = 0;
+  int? _selectedCategory;
+  int? _appliedDiscount;
+  int? _rating;
+  int? _sellerScore;
   int? _shippedFrom;
   int? _delivery;
+  RangeValues? _priceRange;
 
-  RangeValues _priceRange = const RangeValues(0, 200);
+  @override
+  void initState() {
+    super.initState();
+    resetFilters();
+  }
+
+  void resetFilters() {
+    _priceRange = const RangeValues(0, 200);
+    _selectedCategory = null;
+    _appliedDiscount = 0;
+    _rating = 0;
+    _sellerScore = 0;
+    _shippedFrom = null;
+    _delivery = null;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,11 +61,7 @@ class _FilterScreenState extends State<FilterScreen> {
           ),
           trailingOnTap: () {
             setState(() {
-              _priceRange = const RangeValues(0, 200);
-              _selectedCategory = categoryAndSubCategories.keys.toList()[0];
-              _appliedDiscount = 0;
-              _rating = 0;
-              _sellerScore = 0;
+              resetFilters();
             });
           },
         ),
@@ -64,51 +76,31 @@ class _FilterScreenState extends State<FilterScreen> {
           child: Column(
             children: [
               AccountAction(
-                onTap: () {},
+                onTap: () async {
+                  final result = await Navigator.pushNamed(
+                    context,
+                    SelectOptionScreen.routeName,
+                    arguments: {
+                      'options': categoryAndSubCategories.keys.toList(),
+                      'title': 'Category',
+                      'selectedOption': _selectedCategory,
+                    },
+                  );
+                  if (result != null) {
+                    _selectedCategory = result as int;
+                    setState(() {});
+                  }
+                },
                 title: 'Category',
+                trailingSelected: _selectedCategory == null
+                    ? null
+                    : categoryAndSubCategories.keys
+                        .toList()[_selectedCategory!]
+                        .toTitleCase(),
                 titleTextStyle: const TextStyle(
                   color: Colors.black87,
                   fontSize: 14,
                   fontWeight: FontWeight.w500,
-                ),
-                trailingWidget: DropdownButtonHideUnderline(
-                  child: DropdownButton(
-                    alignment: Alignment.centerRight,
-                    style: TextStyle(color: Colors.red),
-                    icon: const Padding(
-                      padding: EdgeInsets.only(left: 8.0),
-                      child: Icon(
-                        Icons.arrow_forward_ios,
-                        size: 14,
-                        color: Colors.black54,
-                      ),
-                    ),
-                    value: _selectedCategory,
-                    onChanged: (value) {
-                      setState(() {
-                        _selectedCategory = value!;
-                      });
-                    },
-                    items: [
-                      for (int i = 0;
-                          i < categoryAndSubCategories.keys.toList().length;
-                          i++)
-                        DropdownMenuItem(
-                          value: categoryAndSubCategories.keys.toList()[i],
-                          child: Text(
-                            categoryAndSubCategories.keys
-                                .toList()[i]
-                                .toTitleCase(),
-                            textAlign: TextAlign.right,
-                            style: const TextStyle(
-                              fontSize: 13,
-                              color: Colors.black54,
-                              fontWeight: FontWeight.w500,
-                            ),
-                          ),
-                        ),
-                    ],
-                  ),
                 ),
               ),
               Divider(
@@ -182,7 +174,7 @@ class _FilterScreenState extends State<FilterScreen> {
                                   borderRadius: BorderRadius.circular(5),
                                 ),
                                 child: Text(
-                                  '${_priceRange.start.toInt()}',
+                                  '${_priceRange!.start.toInt()}',
                                   style: const TextStyle(
                                     fontWeight: FontWeight.w500,
                                     fontSize: 14,
@@ -217,7 +209,7 @@ class _FilterScreenState extends State<FilterScreen> {
                                   borderRadius: BorderRadius.circular(5),
                                 ),
                                 child: Text(
-                                  '${_priceRange.end.toInt()}',
+                                  '${_priceRange!.end.toInt()}',
                                   style: const TextStyle(
                                     fontWeight: FontWeight.w500,
                                     fontSize: 14,
@@ -247,7 +239,7 @@ class _FilterScreenState extends State<FilterScreen> {
                   ),
                 ),
                 child: RangeSlider(
-                    values: _priceRange,
+                    values: _priceRange!,
                     min: 0,
                     max: 1000,
                     divisions: 20,
@@ -259,6 +251,40 @@ class _FilterScreenState extends State<FilterScreen> {
                       );
                     }),
               ),
+              if (_priceRange != const RangeValues(0, 200))
+                Padding(
+                  padding:
+                      const EdgeInsets.only(left: 15, right: 15, bottom: 10),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      GestureDetector(
+                        child: Text(
+                          'APPLY',
+                          style: TextStyle(
+                            color: shadeOfOrange,
+                            fontSize: 12,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          _priceRange = const RangeValues(0, 200);
+                          setState(() {});
+                        },
+                        child: Text(
+                          'RESET',
+                          style: TextStyle(
+                            color: shadeOfOrange,
+                            fontSize: 12,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
               Divider(
                 height: 2,
                 indent: 20,
@@ -457,7 +483,6 @@ class _FilterScreenState extends State<FilterScreen> {
                     if (result != null) {
                       _shippedFrom = result as int;
                     }
-                    print(_shippedFrom);
                   },
                   title: 'Shipped From'),
               Divider(
@@ -481,7 +506,6 @@ class _FilterScreenState extends State<FilterScreen> {
                     if (result != null) {
                       _delivery = result as int;
                     }
-                    print(_delivery);
                   },
                   title: 'Express Delivery'),
             ],

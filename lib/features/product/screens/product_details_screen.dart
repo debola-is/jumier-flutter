@@ -41,6 +41,8 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
               child: const CustomNetworkImage(
                 imageSource:
                     'https://ng.jumia.is/unsafe/fit-in/500x500/filters:fill(white)/product/46/502258/1.jpg?4825',
+                width: 350,
+                height: 350,
               ),
             ),
             Container(
@@ -162,6 +164,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                     children: const [
                       CircleAvatar(
                         foregroundImage: AssetImage('assets/images/jumier.png'),
+                        backgroundColor: Colors.white,
                         radius: 25,
                       ),
                       Flexible(
@@ -172,12 +175,21 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                     ],
                   ),
                   Row(
-                    children: const [
-                      CircleAvatar(
-                        foregroundImage: AssetImage('assets/images/shield.png'),
-                        radius: 25,
+                    children: [
+                      Container(
+                        height: 50,
+                        width: 50,
+                        padding: EdgeInsets.all(10),
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(25),
+                            color: Colors.white),
+                        child: Image.asset(
+                          'assets/images/shield.png',
+                          cacheWidth: 125,
+                          cacheHeight: 125,
+                        ),
                       ),
-                      Flexible(
+                      const Flexible(
                         child: Text(
                           'Borrow loans up to 200,000 to make life easier. No collateral, no paperwork via Jumia  pay financial partners',
                         ),

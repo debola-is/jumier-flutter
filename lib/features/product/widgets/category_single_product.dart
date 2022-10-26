@@ -3,7 +3,7 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:jumier/common/utils/utils.dart';
 import 'package:jumier/common/widgets/custom_network_image.dart';
 import 'package:jumier/constants.dart';
-import 'package:jumier/features/product/screens/see_all_category_screen.dart';
+import 'package:jumier/features/product/screens/see_all_products_screen.dart';
 
 class CategorySingleProduct extends StatelessWidget {
   final Layout layout;
@@ -32,7 +32,8 @@ class CategorySingleProduct extends StatelessWidget {
                         const CustomNetworkImage(
                           imageSource:
                               'https://ng.jumia.is/cms/0-1-homepage/0-0-thumbnails/v2/fashion_220x220.png',
-                          width: 100,
+                          width: 120,
+                          height: 120,
                         ),
                         Positioned(
                           left: 0,
@@ -152,15 +153,13 @@ class CategorySingleProduct extends StatelessWidget {
               children: [
                 Stack(
                   children: [
-                    const SizedBox(
-                      width: double.infinity,
-                      child: AspectRatio(
-                        aspectRatio: 1.4,
-                        child: CustomNetworkImage(
-                          imageSource:
-                              'https://ng.jumia.is/cms/0-1-homepage/0-0-thumbnails/v2/fashion_220x220.png',
-                          width: 100,
-                        ),
+                    const Align(
+                      alignment: Alignment.center,
+                      child: CustomNetworkImage(
+                        imageSource:
+                            'https://ng.jumia.is/cms/0-1-homepage/0-0-thumbnails/v2/fashion_220x220.png',
+                        width: 120,
+                        height: 120,
                       ),
                     ),
                     Positioned(

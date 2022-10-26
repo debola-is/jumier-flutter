@@ -23,8 +23,11 @@ class HomeCategories extends StatelessWidget {
               borderRadius: BorderRadius.circular(25),
             ),
             child: const CustomNetworkImage(
-                imageSource:
-                    'https://ng.jumia.is/cms/0-1-homepage/0-0-thumbnails/v2/phones-tablets_220x220.png'),
+              imageSource:
+                  'https://ng.jumia.is/cms/0-1-homepage/0-0-thumbnails/v2/phones-tablets_220x220.png',
+              height: 100,
+              width: 100,
+            ),
           ),
           Text(
             categoryName,

@@ -31,6 +31,7 @@ class _CarouselImagesState extends State<CarouselImages> {
             options: CarouselOptions(
               autoPlay: true,
               viewportFraction: 0.9,
+              padEnds: true,
               autoPlayCurve: Curves.easeInOutCubicEmphasized,
               autoPlayAnimationDuration: const Duration(seconds: 2),
               onPageChanged: (newPage, pageChangeReason) {

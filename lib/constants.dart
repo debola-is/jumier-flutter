@@ -4,6 +4,7 @@ Color shadeOfBlack = Colors.black.withOpacity(0.85);
 Color backgroundGrey = Colors.grey.shade200;
 Color shadeOfOrange = const Color.fromRGBO(246, 133, 15, 1);
 Color shadeOfBlue = Colors.blue.shade800;
+Color shadeOfRed = const Color.fromRGBO(236, 28, 36, 1);
 List<String> carouselImages = [
   'assets/carousel_images/carousel1.png',
   'assets/carousel_images/carousel2.png',

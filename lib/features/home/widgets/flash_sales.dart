@@ -11,15 +11,15 @@ class FlashSales extends StatelessWidget {
         Container(
           height: 60,
           width: double.infinity,
-          color: Colors.red.shade700,
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+          color: const Color.fromRGBO(236, 28, 36, 1),
+          padding: const EdgeInsets.only(top: 10, right: 10),
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Icon(
-                Icons.price_check_outlined,
-                color: Colors.amber,
-                size: 30,
+              Image.asset(
+                'assets/images/flash.png',
+                cacheHeight: 100,
+                cacheWidth: 100,
               ),
               const SizedBox(
                 width: 10,
@@ -61,13 +61,13 @@ class FlashSales extends StatelessWidget {
           ),
         ),
         Container(
-          height: 230,
+          height: 300,
+          color: Colors.white,
           padding: const EdgeInsets.all(10),
           child: ListView.builder(
             itemCount: 10,
             scrollDirection: Axis.horizontal,
             itemBuilder: (context, index) => const HomeDisplayProduct(
-              width: 150,
               imageSource:
                   'https://ng.jumia.is/unsafe/fit-in/500x500/filters:fill(white)/product/53/673318/1.jpg?4650',
             ),
