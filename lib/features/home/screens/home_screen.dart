@@ -3,9 +3,11 @@ import 'package:jumier/common/widgets/appbars.dart';
 import 'package:jumier/features/home/widgets/carousel.dart';
 import 'package:jumier/common/widgets/custom_loaders.dart';
 import 'package:jumier/constants.dart';
+import 'package:jumier/features/home/widgets/collections.dart';
 import 'package:jumier/features/home/widgets/flash_sales.dart';
 import 'package:jumier/features/home/widgets/home_categories.dart';
 import 'package:jumier/features/home/widgets/limited_deals.dart';
+import 'package:jumier/features/home/widgets/top_deals.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -62,8 +64,30 @@ class _HomeScreenState extends State<HomeScreen> {
                       .toList(),
                 ),
               ),
+              Container(
+                height: 10,
+                color: backgroundGrey,
+              ),
               const FlashSales(),
-              const TopRated(),
+              Container(
+                height: 10,
+                color: backgroundGrey,
+              ),
+              const LimitedStockDeals(),
+              Container(
+                height: 10,
+                color: backgroundGrey,
+              ),
+              const TopDeals(),
+              Container(
+                height: 10,
+                color: backgroundGrey,
+              ),
+              const Collection(),
+              Container(
+                height: 10,
+                color: backgroundGrey,
+              ),
             ],
           ),
         ),

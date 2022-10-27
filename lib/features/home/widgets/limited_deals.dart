@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:jumier/common/widgets/custom_scroll_behaviour.dart';
 import 'package:jumier/features/home/widgets/home_display_product.dart';
 
-class TopRated extends StatelessWidget {
-  const TopRated({super.key});
+class LimitedStockDeals extends StatelessWidget {
+  const LimitedStockDeals({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -22,15 +23,18 @@ class TopRated extends StatelessWidget {
           ),
         ),
         Container(
-          height: 300,
+          height: 220,
           color: Colors.white,
           padding: const EdgeInsets.all(10),
-          child: ListView.builder(
-            itemCount: 10,
-            scrollDirection: Axis.horizontal,
-            itemBuilder: (context, index) => const HomeDisplayProduct(
-              imageSource:
-                  'https://ng.jumia.is/unsafe/fit-in/500x500/filters:fill(white)/product/53/673318/1.jpg?4650',
+          child: ScrollConfiguration(
+            behavior: CustomScrollBehaviour(),
+            child: ListView.builder(
+              itemCount: 10,
+              scrollDirection: Axis.horizontal,
+              itemBuilder: (context, index) => const HomeDisplayProduct(
+                imageSource:
+                    'https://ng.jumia.is/unsafe/fit-in/500x500/filters:fill(white)/product/53/673318/1.jpg?4650',
+              ),
             ),
           ),
         ),

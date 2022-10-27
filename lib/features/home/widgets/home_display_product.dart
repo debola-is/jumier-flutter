@@ -7,11 +7,13 @@ import 'package:jumier/constants.dart';
 class HomeDisplayProduct extends StatefulWidget {
   final double height;
   final double width;
+  final bool? displayItemsRemaining;
   final String imageSource;
   const HomeDisplayProduct({
     super.key,
     this.height = 120,
     this.width = 160,
+    this.displayItemsRemaining = false,
     required this.imageSource,
   });
 
@@ -100,28 +102,31 @@ class _HomeDisplayProductState extends State<HomeDisplayProduct> {
               fontSize: 15,
             ),
           ),
-          // LinearProgressIndicator(
-          //   value: _itemsRemaining! / _totalItems!,
-          //   minHeight: 10,
-          //   backgroundColor: Colors.grey,
-          // ),
-          Container(
-            height: 10,
-            margin: const EdgeInsets.symmetric(vertical: 5),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
-              gradient: LinearGradient(
-                begin: Alignment.centerLeft,
-                end: Alignment.centerRight,
-                colors: [_changeColor(_percentRemaining), Colors.grey.shade300],
-                stops: [_percentRemaining!, 0],
-              ),
+          if (widget.displayItemsRemaining!)
+            Column(
+              children: [
+                Container(
+                  height: 10,
+                  margin: const EdgeInsets.symmetric(vertical: 5),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    gradient: LinearGradient(
+                      begin: Alignment.centerLeft,
+                      end: Alignment.centerRight,
+                      colors: [
+                        _changeColor(_percentRemaining),
+                        Colors.grey.shade300
+                      ],
+                      stops: [_percentRemaining!, 0],
+                    ),
+                  ),
+                ),
+                TextButton(
+                  onPressed: _updateItemsRemaining,
+                  child: const Text('Click me'),
+                ),
+              ],
             ),
-          ),
-          TextButton(
-            onPressed: _updateItemsRemaining,
-            child: const Text('Click me'),
-          ),
         ],
       ),
     );
@@ -131,7 +136,6 @@ class _HomeDisplayProductState extends State<HomeDisplayProduct> {
     const oneSec = Duration(seconds: 1);
     Timer.periodic(oneSec, (timer) {
       _itemsRemaining = _itemsRemaining! - 1;
-      print(_itemsRemaining);
       if (_itemsRemaining! < 1) {
         timer.cancel();
         return;

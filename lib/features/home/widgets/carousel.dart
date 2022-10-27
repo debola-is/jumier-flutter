@@ -11,6 +11,8 @@ class CarouselImages extends StatefulWidget {
 
 class _CarouselImagesState extends State<CarouselImages> {
   int selectedIndex = 0;
+  double selectedSize = 3.5;
+  double unselectedSize = 2.5;
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -21,37 +23,51 @@ class _CarouselImagesState extends State<CarouselImages> {
             items: carouselImages
                 .map(
                   (e) => Builder(
-                    builder: (context) => Image.asset(
-                      e,
-                      fit: BoxFit.fitWidth,
+                    builder: (context) => Container(
+                      margin: const EdgeInsets.symmetric(horizontal: 5),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(5),
+                        image: DecorationImage(
+                          image: AssetImage(e),
+                          fit: BoxFit.fitWidth,
+                        ),
+                      ),
                     ),
                   ),
                 )
                 .toList(),
             options: CarouselOptions(
               autoPlay: true,
-              viewportFraction: 0.9,
+              aspectRatio: 2.4,
+              viewportFraction: 0.8,
               padEnds: true,
               autoPlayCurve: Curves.easeInOutCubicEmphasized,
-              autoPlayAnimationDuration: const Duration(seconds: 2),
+              autoPlayAnimationDuration: const Duration(seconds: 1),
               onPageChanged: (newPage, pageChangeReason) {
                 update(newPage);
               },
             ),
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              for (int i = 0; i < carouselImages.length; i++)
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 5),
-                  child: CircleAvatar(
-                    radius: selectedIndex == i ? 4 : 3.5,
-                    foregroundColor:
-                        selectedIndex == i ? Colors.orange : shadeOfBlack,
+          SizedBox(
+            height: 20,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                for (int i = 0; i < carouselImages.length; i++)
+                  Padding(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 1,
+                    ),
+                    child: CircleAvatar(
+                      radius:
+                          selectedIndex == i ? selectedSize : unselectedSize,
+                      backgroundColor: selectedIndex == i
+                          ? Colors.orange
+                          : Colors.grey.shade400,
+                    ),
                   ),
-                ),
-            ],
+              ],
+            ),
           ),
         ],
       ),

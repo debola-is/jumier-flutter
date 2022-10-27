@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:jumier/features/feed/screens/feed_screen.dart';
 import 'package:jumier/features/help/screens/help_screen.dart';
 import 'package:jumier/features/home/screens/category_screen.dart';
 import 'package:jumier/features/home/screens/home_screen.dart';
@@ -17,9 +18,7 @@ class _GeneralHomeState extends State<GeneralHome> {
   final List<Widget> _pages = [
     const HomeScreen(),
     const CategoryScreen(),
-    const Center(
-      child: Text('Feed'),
-    ),
+    const FeedScreen(),
     const AccountScreen(),
     const HelpScreen(),
   ];

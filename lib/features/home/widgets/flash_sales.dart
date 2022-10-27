@@ -70,6 +70,7 @@ class FlashSales extends StatelessWidget {
             itemBuilder: (context, index) => const HomeDisplayProduct(
               imageSource:
                   'https://ng.jumia.is/unsafe/fit-in/500x500/filters:fill(white)/product/53/673318/1.jpg?4650',
+              displayItemsRemaining: true,
             ),
           ),
         ),
