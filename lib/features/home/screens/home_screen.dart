@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:jumier/common/widgets/appbars.dart';
 import 'package:jumier/features/home/widgets/carousel.dart';
@@ -6,7 +7,7 @@ import 'package:jumier/constants.dart';
 import 'package:jumier/features/home/widgets/collections.dart';
 import 'package:jumier/features/home/widgets/flash_sales.dart';
 import 'package:jumier/features/home/widgets/home_categories.dart';
-import 'package:jumier/features/home/widgets/limited_deals.dart';
+import 'package:jumier/features/home/widgets/limited_stock_deals.dart';
 import 'package:jumier/features/home/widgets/top_deals.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 
@@ -19,6 +20,18 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   bool _isLoading = false;
+
+  Future<void> submit() async {
+    setState(() {
+      _isLoading = true;
+    });
+    Future.delayed(const Duration(seconds: 5), () {
+      setState(() {
+        _isLoading = false;
+      });
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -105,15 +118,4 @@ class _HomeScreenState extends State<HomeScreen> {
     'Appliances',
     'Combo Deals',
   ];
-
-  Future<void> submit() async {
-    setState(() {
-      _isLoading = true;
-    });
-    Future.delayed(const Duration(seconds: 5), () {
-      setState(() {
-        _isLoading = false;
-      });
-    });
-  }
 }

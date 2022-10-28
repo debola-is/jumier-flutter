@@ -43,6 +43,7 @@ dependencies:
   csc_picker: ^0.2.6
   font_awesome_flutter: ^10.2.1
   cached_network_image: ^3.2.2
+  connectivity_plus: ^3.0.2
 
 dev_dependencies:
   flutter_test:

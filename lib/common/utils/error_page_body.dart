@@ -38,7 +38,7 @@ class ErrorPageBody extends StatelessWidget {
             height: 25,
           ),
           const Text(
-            'To get the best shopping experience on Jumier, you\'ll need internet connection.',
+            'To get the best shopping experience on Jumier, you\'ll need an internet connection.',
             textAlign: TextAlign.center,
             style: TextStyle(
               fontSize: 16,

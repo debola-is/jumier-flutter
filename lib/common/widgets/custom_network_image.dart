@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jumier/constants.dart';
 
 class CustomNetworkImage extends StatelessWidget {
   final String imageSource;
@@ -25,14 +26,19 @@ class CustomNetworkImage extends StatelessWidget {
       imageCacheWidth: width.floor(),
       placeholderCacheHeight: height.floor(),
       placeholderCacheWidth: width.floor(),
-      imageErrorBuilder: (context, error, stackTrace) => Image.asset(
-        'assets/images/jumier.png',
-        height: height,
-        width: width,
-        fit: fit,
-        cacheHeight: height.floor(),
-        cacheWidth: width.floor(),
-      ),
+      imageErrorBuilder: (context, error, stackTrace) => SizedBox(
+          height: height,
+          width: width,
+          child: Padding(
+            padding: EdgeInsets.symmetric(
+              horizontal: width / 2.5,
+              vertical: height / 2.5,
+            ),
+            child: CircularProgressIndicator(
+              strokeWidth: 2,
+              color: shadeOfOrange,
+            ),
+          )),
     );
   }
 }
