@@ -91,12 +91,15 @@ class SubCategory extends StatelessWidget {
                     const SizedBox(
                       height: 10,
                     ),
-                    Text(
-                      subSubCategoryNames[index],
-                      textAlign: TextAlign.center,
-                      style: const TextStyle(fontSize: 10),
-                      overflow: TextOverflow.ellipsis,
-                      maxLines: 2,
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 10),
+                      child: Text(
+                        subSubCategoryNames[index].toTitleCase(),
+                        textAlign: TextAlign.center,
+                        style: const TextStyle(fontSize: 10),
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 2,
+                      ),
                     ),
                   ],
                 ),

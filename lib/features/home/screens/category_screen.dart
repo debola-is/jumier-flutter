@@ -41,7 +41,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
                     changeActiveCategory(index);
                   },
                   child: Container(
-                    padding: const EdgeInsets.all(20),
+                    padding: const EdgeInsets.symmetric(horizontal: 25),
                     decoration: BoxDecoration(
                       color:
                           _activeIndex == index ? backgroundGrey : Colors.white,
