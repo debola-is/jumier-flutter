@@ -6,9 +6,17 @@ import 'package:jumier/features/product/filter/filter_screen.dart';
 import 'package:jumier/features/product/filter/select_options_screen.dart';
 import 'package:jumier/features/product/screens/product_details_screen.dart';
 import 'package:jumier/features/product/screens/see_all_products_screen.dart';
+import 'package:jumier/general_home.dart';
 
 Route<dynamic> generateRoute(RouteSettings routeSettings) {
   switch (routeSettings.name) {
+    case GeneralHome.routeName:
+      var page = routeSettings.arguments as int;
+      return MaterialPageRoute(
+        builder: (_) => GeneralHome(
+          pageToDisplayOnNavigate: page,
+        ),
+      );
     case SeeAllProductsScreen.routeName:
       var categoryName = routeSettings.arguments as String;
       return MaterialPageRoute(
