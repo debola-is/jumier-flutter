@@ -1,4 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:jumier/features/feed/screens/feed_screen.dart';
+import 'package:jumier/features/help/screens/help_screen.dart';
+import 'package:jumier/features/home/screens/category_screen.dart';
+import 'package:jumier/features/home/screens/home_screen.dart';
+import 'package:jumier/features/user/screens/account_screen.dart';
 
 Color shadeOfBlack = Colors.black.withOpacity(0.85);
 Color backgroundGrey = Colors.grey.shade200;
@@ -29,6 +35,26 @@ extension StringCasingExtension on String {
       .map((str) => str.toCapitalized())
       .join(' ');
 }
+
+Map<String, List> generalHomeCategories = {
+  'Home': [
+    const HomeScreen(),
+    Icons.home_outlined,
+  ],
+  'Categories': [
+    const CategoryScreen(),
+    Icons.list_alt_outlined,
+  ],
+  'Feed': [
+    const FeedScreen(),
+    FontAwesomeIcons.squareRss,
+  ],
+  'Account': [
+    const AccountScreen(),
+    Icons.person,
+  ],
+  'Help': [const HelpScreen(), Icons.help_outline],
+};
 
 Map<String, Map<String, List<String>>> categoryAndSubCategories = {
   'grocery': {
