@@ -18,7 +18,9 @@ class MyApp extends StatelessWidget {
       title: 'Jumier',
       theme: appTheme,
       onGenerateRoute: (settings) => generateRoute(settings),
-      home: const GeneralHome(),
+      home: const GeneralHome(
+        pageToDisplayOnNavigate: 0,
+      ),
     );
   }
 }
