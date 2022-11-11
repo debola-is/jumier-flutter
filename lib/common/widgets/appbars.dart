@@ -7,6 +7,7 @@ import 'package:jumier/features/home/screens/category_screen.dart';
 import 'package:jumier/features/home/screens/home_screen.dart';
 import 'package:jumier/features/search/screens/search_screen.dart';
 import 'package:jumier/features/user/screens/account_screen.dart';
+import 'package:jumier/general_home.dart';
 
 PreferredSizeWidget getAppbar({
   required String title,
@@ -78,9 +79,47 @@ PreferredSizeWidget getAppbar({
             padding: const EdgeInsets.only(left: 15, right: 4),
             child: PopupMenuButton(
               itemBuilder: (context) {
-                return cartChoices.keys
+                return generalHomeCategories.keys
                     .toList()
-                    .map((e) => PopupMenuItem(child: Text(e)))
+                    .map(
+                      (e) => PopupMenuItem(
+                        padding: const EdgeInsets.all(0),
+                        height: 40,
+                        child: Container(
+                          color: Colors.white,
+                          padding: const EdgeInsets.symmetric(horizontal: 10),
+                          width: 150,
+                          child: GestureDetector(
+                            onTap: () {
+                              Navigator.pushNamedAndRemoveUntil(
+                                context,
+                                GeneralHome.routeName,
+                                (route) => false,
+                                arguments: generalHomeCategories.keys
+                                    .toList()
+                                    .indexOf(e),
+                              );
+                            },
+                            child: Row(
+                              children: [
+                                Icon(
+                                  generalHomeCategories[e]![1],
+                                  color: Colors.black54,
+                                  size: 26,
+                                ),
+                                const SizedBox(
+                                  width: 10,
+                                ),
+                                Text(
+                                  e,
+                                  style: const TextStyle(color: Colors.black45),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                    )
                     .toList();
               },
             ),
@@ -129,11 +168,3 @@ PreferredSizeWidget getSearchAppbar({
     ),
   );
 }
-
-const cartChoices = {
-  'home': HomeScreen(),
-  'categories': CategoryScreen(),
-  'feed': FeedScreen(),
-  'account': AccountScreen(),
-  'help': HelpScreen(),
-};
