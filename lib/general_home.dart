@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:jumier/common/utils/error_page_body.dart';
+import 'package:jumier/constants.dart';
 import 'package:jumier/features/feed/screens/feed_screen.dart';
 import 'package:jumier/features/help/screens/help_screen.dart';
 import 'package:jumier/features/home/screens/category_screen.dart';
@@ -21,7 +22,12 @@ final List<Widget> _pages = [
 ];
 
 class GeneralHome extends StatefulWidget {
-  const GeneralHome({super.key});
+  static const routeName = './';
+  final int pageToDisplayOnNavigate;
+  const GeneralHome({
+    super.key,
+    required this.pageToDisplayOnNavigate,
+  });
 
   @override
   State<GeneralHome> createState() => _GeneralHomeState();
@@ -35,6 +41,7 @@ class _GeneralHomeState extends State<GeneralHome> {
   @override
   void initState() {
     super.initState();
+    _currentPage = widget.pageToDisplayOnNavigate;
     initConnection();
     _connectivitySubsctiption =
         _connectivity.onConnectivityChanged.listen(buildContent);
@@ -80,39 +87,16 @@ class _GeneralHomeState extends State<GeneralHome> {
         onTap: (value) {
           changePage(_pages[value], value);
         },
-        items: const [
-          BottomNavigationBarItem(
-            label: 'Home',
-            icon: Icon(
-              Icons.home_outlined,
-            ),
-          ),
-          BottomNavigationBarItem(
-            label: 'Categories',
-            icon: Icon(
-              Icons.list_alt_outlined,
-            ),
-          ),
-          BottomNavigationBarItem(
-            label: 'Feed',
-            icon: Icon(
-              FontAwesomeIcons.squareRss,
-              size: 16,
-            ),
-          ),
-          BottomNavigationBarItem(
-            label: 'Account',
-            icon: Icon(
-              Icons.person,
-            ),
-          ),
-          BottomNavigationBarItem(
-            label: 'Help',
-            icon: Icon(
-              Icons.help_outline,
-            ),
-          ),
-        ],
+        items: generalHomeCategories.keys
+            .map(
+              (e) => BottomNavigationBarItem(
+                label: e,
+                icon: Icon(
+                  generalHomeCategories[e]![1],
+                ),
+              ),
+            )
+            .toList(),
       ),
     );
   }
