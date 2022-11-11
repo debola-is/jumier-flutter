@@ -4,6 +4,8 @@ import 'package:jumier/common/utils/utils.dart';
 import 'package:jumier/common/widgets/appbars.dart';
 import 'package:jumier/common/widgets/custom_network_image.dart';
 import 'package:jumier/constants.dart';
+import 'package:jumier/features/cart/widgets/add_button.dart';
+import 'package:jumier/features/cart/widgets/cart_item.dart';
 import 'package:jumier/features/user/widgets/info_tab.dart';
 
 class CartScreen extends StatefulWidget {
@@ -22,12 +24,19 @@ class _CartScreenState extends State<CartScreen> {
       backgroundColor: backgroundGrey,
       body: Column(
         children: [
-          const InfoTab(description: 'CART SUMMARY'),
+          const InfoTab(
+            description: 'CART SUMMARY',
+            padding: EdgeInsets.only(
+              top: 20,
+              bottom: 10,
+              left: 15,
+            ),
+          ),
           Container(
             margin: const EdgeInsets.symmetric(horizontal: 5),
             padding: const EdgeInsets.all(10),
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
+              borderRadius: BorderRadius.circular(5),
               color: Colors.white,
             ),
             child: Column(
@@ -90,133 +99,23 @@ class _CartScreenState extends State<CartScreen> {
               ],
             ),
           ),
-          const InfoTab(description: 'CART (7)'),
-          Container(
-            padding:
-                const EdgeInsets.only(top: 10, bottom: 20, left: 10, right: 10),
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(5),
+          const InfoTab(
+            description: 'CART (7)',
+            padding: EdgeInsets.only(
+              top: 20,
+              bottom: 10,
+              left: 15,
             ),
-            child: Column(
-              children: [
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const CustomNetworkImage(
-                      imageSource:
-                          'https://ng.jumia.is/cms/0-1-homepage/0-0-thumbnails/v2/fashion_220x220.png',
-                      width: 100,
-                      height: 100,
-                    ),
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          const Text(
-                            'This is the name of the product',
-                            style: TextStyle(
-                              fontSize: 12,
-                              fontWeight: FontWeight.w500,
-                              color: Colors.black87,
-                            ),
-                            maxLines: 2,
-                          ),
-                          const SizedBox(
-                            height: 5,
-                          ),
-                          RichText(
-                            text: const TextSpan(
-                              text: 'Seller: ',
-                              style: TextStyle(
-                                fontSize: 12,
-                                fontWeight: FontWeight.w500,
-                                color: Colors.black38,
-                              ),
-                              children: [
-                                TextSpan(
-                                  text: 'This is the seller name',
-                                  style: TextStyle(
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.w500,
-                                    color: Colors.black87,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          const Text(
-                            'This is the name of the product',
-                            style: TextStyle(
-                              fontSize: 12,
-                              fontWeight: FontWeight.w500,
-                              color: Colors.black87,
-                            ),
-                            maxLines: 2,
-                          ),
-                          const Text(
-                            '₦ 1,000',
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: 18),
-                          ),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          RatingBarIndicator(
-                            unratedColor: Colors.black26,
-                            rating: 5,
-                            itemSize: 12,
-                            itemBuilder: (context, _) => Icon(
-                              Icons.star,
-                              color: shadeOfOrange,
-                            ),
-                          ),
-                          const SizedBox(
-                            height: 5,
-                          ),
-                          Row(
-                            children: [
-                              const Text(
-                                'Express shipping',
-                                style:
-                                    TextStyle(fontSize: 12, letterSpacing: 0.8),
-                              ),
-                              const SizedBox(width: 5),
-                              Icon(
-                                Icons.airplanemode_active,
-                                size: 16,
-                                color: shadeOfOrange,
-                              ),
-                            ],
-                          ),
-                          RichText(
-                            text: const TextSpan(
-                                text: 'Eligible for ',
-                                style: TextStyle(
-                                  fontSize: 12,
-                                  color: Colors.black,
-                                ),
-                                children: [
-                                  TextSpan(
-                                      text: 'Free Delivery',
-                                      style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 12,
-                                        color: Colors.black,
-                                      ))
-                                ]),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ],
+          ),
+          const SingleCartItem(),
+          const InfoTab(
+            description: 'not included',
+            padding: EdgeInsets.only(
+              top: 20,
+              bottom: 10,
+              left: 15,
             ),
-          )
+          ),
         ],
       ),
       bottomNavigationBar: Container(
