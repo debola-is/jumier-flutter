@@ -1,12 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:jumier/constants.dart';
 import 'package:jumier/features/cart/screens/cart_screen.dart';
-import 'package:jumier/features/feed/screens/feed_screen.dart';
-import 'package:jumier/features/help/screens/help_screen.dart';
-import 'package:jumier/features/home/screens/category_screen.dart';
-import 'package:jumier/features/home/screens/home_screen.dart';
 import 'package:jumier/features/search/screens/search_screen.dart';
-import 'package:jumier/features/user/screens/account_screen.dart';
 import 'package:jumier/general_home.dart';
 
 PreferredSizeWidget getAppbar({

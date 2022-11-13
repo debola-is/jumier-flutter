@@ -56,9 +56,9 @@ Route<dynamic> generateRoute(RouteSettings routeSettings) {
       return CupertinoPageRoute(
         builder: (_) => const SavedItemsScreen(),
       );
-    case RecentlyViwedScreen.routeName:
+    case RecentlyViewedScreen.routeName:
       return CupertinoPageRoute(
-        builder: (_) => const RecentlyViwedScreen(),
+        builder: (_) => const RecentlyViewedScreen(),
       );
     default:
       return MaterialPageRoute(

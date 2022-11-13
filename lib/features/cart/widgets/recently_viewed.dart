@@ -29,7 +29,7 @@ class RecentlyViewed extends StatelessWidget {
               GestureDetector(
                 onTap: () => Navigator.pushNamed(
                   context,
-                  RecentlyViwedScreen.routeName,
+                  RecentlyViewedScreen.routeName,
                 ),
                 child: Text(
                   'SEE ALL',
