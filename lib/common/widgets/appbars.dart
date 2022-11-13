@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jumier/constants.dart';
-import 'package:jumier/features/cart/cart_screen.dart';
+import 'package:jumier/features/cart/screens/cart_screen.dart';
 import 'package:jumier/features/feed/screens/feed_screen.dart';
 import 'package:jumier/features/help/screens/help_screen.dart';
 import 'package:jumier/features/home/screens/category_screen.dart';
@@ -88,7 +88,7 @@ PreferredSizeWidget getAppbar({
                         child: Container(
                           color: Colors.white,
                           padding: const EdgeInsets.symmetric(horizontal: 10),
-                          width: 150,
+                          width: screenWidth(context) / 2,
                           child: GestureDetector(
                             onTap: () {
                               Navigator.pushNamedAndRemoveUntil(
@@ -104,15 +104,19 @@ PreferredSizeWidget getAppbar({
                               children: [
                                 Icon(
                                   generalHomeCategories[e]![1],
-                                  color: Colors.black54,
-                                  size: 26,
+                                  color: Colors.black87,
+                                  size: 22,
                                 ),
                                 const SizedBox(
                                   width: 10,
                                 ),
                                 Text(
                                   e,
-                                  style: const TextStyle(color: Colors.black45),
+                                  style: const TextStyle(
+                                    color: Colors.black87,
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w500,
+                                  ),
                                 ),
                               ],
                             ),
