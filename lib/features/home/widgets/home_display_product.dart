@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:jumier/common/utils/utils.dart';
 import 'package:jumier/common/widgets/custom_network_image.dart';
 import 'package:jumier/constants.dart';
 
@@ -8,12 +9,16 @@ class HomeDisplayProduct extends StatefulWidget {
   final double height;
   final double width;
   final bool? displayItemsRemaining;
+  final bool? displayAddToCartButton;
+  final bool? displayPreviousPrice;
   final String imageSource;
   const HomeDisplayProduct({
     super.key,
     this.height = 120,
     this.width = 160,
     this.displayItemsRemaining = false,
+    this.displayAddToCartButton = false,
+    this.displayPreviousPrice = false,
     required this.imageSource,
   });
 
@@ -126,6 +131,20 @@ class _HomeDisplayProductState extends State<HomeDisplayProduct> {
                   child: const Text('Click me'),
                 ),
               ],
+            ),
+          if (widget.displayAddToCartButton!)
+            customButton(title: 'ADD TO CART', height: 35),
+          if (widget.displayPreviousPrice!)
+            const Padding(
+              padding: EdgeInsets.only(top: 10),
+              child: Text(
+                '₦ 170,000',
+                style: TextStyle(
+                  color: Colors.black26,
+                  fontSize: 12,
+                  decoration: TextDecoration.lineThrough,
+                ),
+              ),
             ),
         ],
       ),
