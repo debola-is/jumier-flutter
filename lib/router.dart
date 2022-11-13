@@ -1,7 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:jumier/constants.dart';
-import 'package:jumier/features/cart/cart_screen.dart';
+import 'package:jumier/features/cart/screens/cart_screen.dart';
+import 'package:jumier/features/cart/screens/recently_viewed_screen.dart';
+import 'package:jumier/features/cart/screens/saved_items_screen.dart';
 import 'package:jumier/features/product/filter/filter_screen.dart';
 import 'package:jumier/features/product/filter/select_options_screen.dart';
 import 'package:jumier/features/product/screens/product_details_screen.dart';
@@ -30,7 +32,7 @@ Route<dynamic> generateRoute(RouteSettings routeSettings) {
       );
 
     case FilterScreen.routeName:
-      return MaterialPageRoute(
+      return CupertinoPageRoute(
         builder: (_) => const FilterScreen(),
       );
 
@@ -48,6 +50,15 @@ Route<dynamic> generateRoute(RouteSettings routeSettings) {
     case CartScreen.routeName:
       return CupertinoPageRoute(
         builder: (_) => const CartScreen(),
+      );
+
+    case SavedItemsScreen.routeName:
+      return CupertinoPageRoute(
+        builder: (_) => const SavedItemsScreen(),
+      );
+    case RecentlyViwedScreen.routeName:
+      return CupertinoPageRoute(
+        builder: (_) => const RecentlyViwedScreen(),
       );
     default:
       return MaterialPageRoute(
