@@ -1,38 +1,59 @@
-import 'package:flutter/foundation.dart';
+import 'dart:convert';
+import 'package:jumier/models/rating.dart';
 
 class Product {
-  String? name;
-  String? brand;
-  double? price;
-  String? sellerName;
-  List<String>? images;
-  String? category;
-  List<String>? subCategories;
-  String? id;
+  final String name;
+  final String brand;
+  final double price;
+  final double oldPrice;
+  final int quantity;
+  final String sellerName;
+  final List<String> images;
+  final String category;
+  final List<String> subCategories;
+  final bool isExpressAvailable;
+  final String id;
+  final List<Rating>? ratings;
 
   Product({
-    this.name,
-    this.brand,
-    this.id,
-    this.images,
-    this.price,
-    this.sellerName,
-    this.category,
-    this.subCategories,
+    required this.name,
+    required this.brand,
+    required this.id,
+    required this.images,
+    required this.price,
+    required this.sellerName,
+    required this.category,
+    required this.subCategories,
+    required this.isExpressAvailable,
+    required this.quantity,
+    required this.oldPrice,
+    this.ratings,
   });
 
-  Product.fromJson(Map<String, dynamic> json) {
-    name = json['name'] ?? '';
-    brand = json['brand'] ?? '';
-    price = json['price'] ?? 0;
-    sellerName = json['sellerName'] ?? '';
-    images = json['images'] ?? [];
-    category = json['category'] ?? '';
-    subCategories = json['subCategories'] ?? [];
-    id = json['_id'] ?? '';
+  factory Product.fromMap(Map<String, dynamic> map) {
+    return Product(
+      name: map['name'] ?? '',
+      brand: map['brand'] ?? '',
+      price: map['price']?.toDouble() ?? 0.0,
+      quantity: map['quantity']?.toInt() ?? 0,
+      oldPrice: map['oldPrice']?.toDouble() ?? 0.0,
+      sellerName: map['sellerName'] ?? '',
+      images: map['images'] ?? [],
+      category: map['category'] ?? '',
+      subCategories: map['subCategories'] ?? [],
+      isExpressAvailable: map['isExpressAvailable'] ?? false,
+      id: map['_id'] ?? '',
+      ratings: map['ratings'] != null
+          ? List<Rating>.from(
+              map['ratings']?.map(
+                (x) => Rating.fromMap(x),
+              ),
+            )
+          : null,
+    );
   }
 
-  Map<String, dynamic> toJson() {
+  Map<String, dynamic> toMap() {
     Map<String, dynamic> data = {};
     data['name'] = name;
     data['brand'] = brand;
@@ -44,4 +65,9 @@ class Product {
     data['_id'] = id;
     return data;
   }
+
+  String toJson() => json.encode(toMap());
+
+  factory Product.fromJson(String source) =>
+      Product.fromMap(json.decode(source));
 }
