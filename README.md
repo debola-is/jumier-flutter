@@ -10,27 +10,19 @@ A fully functional clone of the Jumia NG mobile shopping application built with 
 
 ## Features Implemented
 
-- `Authentication` - User can either login to their existing account or Signup to create a new account. Minimal information is required to be provided by user to simplify the process.
-
-- `Account` User account specific actions and views, they include;
-
-  - acounts screen
-  - wishlist
-  - vouchers
-  - signing out
-  - account type management and,
-  - user orders.
-    ![Alt text](images/import-collection-1.png?raw=true "Image 1")
-
-- `Admin` These functionalities are only available to an account signed in as an admin account. Admin functionalities include the following:
-
-  - Viewing all products
-    ![Alt text](images/import-collection-1.png?raw=true "Image 1")
-  - adding a new product
-    ![Alt text](images/import-collection-1.png?raw=true "Image 1")
-  - Orders analytics
-    ![Alt text](images/import-collection-1.png?raw=true "Image 1")
-  - Viewing all orders and altering the progress stage of the order
-    ![Alt text](images/import-collection-1.png?raw=true "Image 1")
-
-- `Shopping Cart` The cart can be used by signedin user and unsigned-in account. However, an order cannot be created without the user being signed into their account.
+| **Screen Title** | **as Seen on Jumia Original**                    | **My Implementation**                            |
+|------------------|--------------------------------------------------|--------------------------------------------------|
+| Home Page 1      | ![Alt text](images/home-1.jpg?raw=true "Home 1") | ![Alt text](images/home-1.jpg?raw=true "Home 1") |
+| Home Page 2      | ![Alt text](images/home-2.jpg?raw=true "Home 2") | ![Alt text](images/home-2.jpg?raw=true "Home 2") |
+| Home Page 3      | ![Alt text](images/home-3.jpg?raw=true "Home 3") | ![Alt text](images/home-3.jpg?raw=true "Home 3") |
+| Home Page 4      | ![Alt text](images/home-4.jpg?raw=true "Home 4") | ![Alt text](images/home-4.jpg?raw=true "Home 4") |
+|                  |                                                  |                                                  |
+|                  |                                                  |                                                  |
+|                  |                                                  |                                                  |
+|                  |                                                  |                                                  |
+|                  |                                                  |                                                  |
+|                  |                                                  |                                                  |
+|                  |                                                  |                                                  |
+|                  |                                                  |                                                  |
+|                  |                                                  |                                                  |
+|                  |                                                  |                                                  |
