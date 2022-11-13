@@ -92,9 +92,9 @@ MaterialButton customButton({
       borderRadius: BorderRadius.circular(5),
     ),
     child: Text(
-      'Add to cart',
+      title,
       style: TextStyle(
-          color: Colors.white,
+          color: Colors.white.withOpacity(0.9),
           fontWeight: FontWeight.bold,
           fontSize: textSize ?? 12),
     ),
