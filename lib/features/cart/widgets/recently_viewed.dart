@@ -45,7 +45,7 @@ class RecentlyViewed extends StatelessWidget {
         ),
         Container(
           height: 240,
-          padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+          padding: const EdgeInsets.symmetric(vertical: 10),
           color: Colors.white,
           child: ScrollConfiguration(
             behavior: CustomScrollBehaviour(),
