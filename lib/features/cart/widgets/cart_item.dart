@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jumier/common/widgets/custom_button.dart';
 import 'package:jumier/common/widgets/custom_network_image.dart';
 import 'package:jumier/constants.dart';
 import 'package:jumier/features/cart/widgets/add_button.dart';
@@ -6,9 +7,11 @@ import 'package:jumier/features/cart/widgets/out_of_stock.dart';
 
 class SingleCartItem extends StatefulWidget {
   final bool inStock;
+  final bool inCart;
   const SingleCartItem({
     super.key,
     required this.inStock,
+    this.inCart = false,
   });
 
   @override
@@ -151,7 +154,7 @@ class _SingleCartItemState extends State<SingleCartItem> {
                   height: 10,
                 ),
               ),
-              if (widget.inStock)
+              if (widget.inStock && widget.inCart)
                 Row(
                   children: [
                     CartItemButton(
@@ -177,6 +180,13 @@ class _SingleCartItemState extends State<SingleCartItem> {
                   ],
                 ),
               if (!widget.inStock) const OutOfStockBanner(),
+              if (widget.inStock && !widget.inCart)
+                CustomButton(
+                  text: 'ADD TO CART',
+                  onTap: () {},
+                  width: 140,
+                  height: 40,
+                ),
             ],
           ),
         ],

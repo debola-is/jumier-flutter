@@ -25,7 +25,8 @@ class _CartScreenState extends State<CartScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: getAppbar(title: 'Cart', context: context, isCart: true),
+      appBar:
+          getAppbar(title: 'Cart', context: context, showHomeNavigator: true),
       backgroundColor: backgroundGrey,
       body: ScrollConfiguration(
         behavior: CustomScrollBehaviour(),
@@ -115,7 +116,10 @@ class _CartScreenState extends State<CartScreen> {
                   left: 15,
                 ),
               ),
-              const SingleCartItem(inStock: true),
+              const SingleCartItem(
+                inStock: true,
+                inCart: true,
+              ),
               const InfoTab(
                 description: 'not included (3)',
                 padding: EdgeInsets.only(
