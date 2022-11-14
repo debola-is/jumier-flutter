@@ -27,7 +27,13 @@ class _SeeAllProductsScreenState extends State<SeeAllProductsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: getAppbar(title: widget.categoryName, context: context),
+      appBar: getAppbar(
+        title: widget.categoryName,
+        showHomeNavigator: true,
+        showCart: true,
+        showSearch: true,
+        context: context,
+      ),
       body: Column(
         children: [
           Container(
