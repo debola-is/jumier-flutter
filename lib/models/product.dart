@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:jumier/models/product_variant.dart';
 import 'package:jumier/models/rating.dart';
 
 class Product {
@@ -14,6 +15,7 @@ class Product {
   final bool isExpressAvailable;
   final String id;
   final List<Rating>? ratings;
+  final List<ProductVariant>? variants;
 
   Product({
     required this.name,
@@ -28,6 +30,7 @@ class Product {
     required this.quantity,
     required this.oldPrice,
     this.ratings,
+    this.variants,
   });
 
   factory Product.fromMap(Map<String, dynamic> map) {
@@ -47,6 +50,13 @@ class Product {
           ? List<Rating>.from(
               map['ratings']?.map(
                 (x) => Rating.fromMap(x),
+              ),
+            )
+          : null,
+      variants: map['variants'] != null
+          ? List<ProductVariant>.from(
+              map['variants']?.map(
+                (x) => ProductVariant.fromMap(x),
               ),
             )
           : null,

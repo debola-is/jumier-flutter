@@ -6,10 +6,12 @@ class User {
   final String lastName;
   final String phoneNumber;
   final String email;
-  final String address;
+  final List<String> addresses;
   final String token;
   final String id;
-  final List<Product> cart;
+  final List<Product>? cart;
+  final List<Product>? recentlyViewed;
+  final List<Product>? savedItems;
 
   User({
     required this.firstName,
@@ -17,10 +19,12 @@ class User {
     required this.lastName,
     required this.phoneNumber,
     required this.email,
-    required this.address,
+    required this.addresses,
     required this.token,
     required this.id,
     required this.cart,
+    required this.recentlyViewed,
+    required this.savedItems,
   });
 
   factory User.fromMap(Map<String, dynamic> map) {
@@ -30,10 +34,30 @@ class User {
       lastName: map['lastName'] ?? '',
       phoneNumber: map['phoneNumber'] ?? '',
       email: map['email'] ?? '',
-      address: map['address'] ?? '',
+      addresses: map['addresses'] ?? [],
       token: map['token'] ?? '',
       id: map['_id'] ?? '',
-      cart: map['cart'],
+      cart: map['cart'] != null
+          ? List<Product>.from(
+              map['cart']?.map(
+                (x) => Product.fromMap(x),
+              ),
+            )
+          : null,
+      recentlyViewed: map['recentlyViewed'] != null
+          ? List<Product>.from(
+              map['cart']?.map(
+                (x) => Product.fromMap(x),
+              ),
+            )
+          : null,
+      savedItems: map['savedItems'] != null
+          ? List<Product>.from(
+              map['cart']?.map(
+                (x) => Product.fromMap(x),
+              ),
+            )
+          : null,
     );
   }
   Map<String, dynamic> toMap() {
@@ -43,7 +67,7 @@ class User {
     data['lastName'] = lastName;
     data['phoneNumber'] = phoneNumber;
     data['email'] = email;
-    data['address'] = address;
+    data['addresses'] = addresses;
     data['token'] = token;
     data['id'] = id;
     data['cart'] = cart;

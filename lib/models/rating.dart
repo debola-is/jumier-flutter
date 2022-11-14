@@ -15,6 +15,7 @@ class Rating {
     return {
       'userId': userId,
       'rating': rating,
+      'review': review,
     };
   }
 
