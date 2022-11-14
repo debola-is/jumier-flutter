@@ -55,17 +55,24 @@ PreferredSizeWidget getAppbar({
             ),
           ),
         if (showCart!)
-          GestureDetector(
-            onTap: () {
-              Navigator.pushNamed(context, CartScreen.routeName);
-            },
-            child: const Icon(
-              Icons.shopping_cart_outlined,
-              size: 22,
+          Padding(
+            padding: const EdgeInsets.only(left: 15),
+            child: GestureDetector(
+              onTap: () {
+                Navigator.pushNamed(context, CartScreen.routeName);
+              },
+              child: const Icon(
+                Icons.shopping_cart_outlined,
+                size: 22,
+              ),
             ),
           ),
         if (showHomeNavigator!)
           PopupMenuButton(
+            icon: const Icon(
+              Icons.more_horiz,
+              size: 24,
+            ),
             padding: const EdgeInsets.all(0),
             itemBuilder: (context) {
               return generalHomeCategories.keys
