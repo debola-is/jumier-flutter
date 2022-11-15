@@ -1,50 +1,60 @@
 import 'dart:convert';
 
-import 'package:jumier/features/product/filter/filter_screen.dart';
-
 class Filter {
-  String? productName;
-  double? minPrice;
-  double? maxPrice;
-  double? discountPercentage;
-  double? ratingMin;
-  double? sellerScoreMin;
-  String? shippedFrom;
-  String? delivery;
+  final String category;
+  final String brandName;
+  final double minPrice;
+  final double maxPrice;
+  final double discountPercentage;
+  final double ratingMin;
+  final double sellerScoreMin;
+  final String shippedFrom;
+  final String delivery;
 
   Filter({
-    this.productName,
-    this.minPrice,
-    this.maxPrice,
-    this.discountPercentage,
-    this.ratingMin,
-    this.sellerScoreMin,
-    this.shippedFrom,
-    this.delivery,
+    required this.category,
+    required this.brandName,
+    required this.minPrice,
+    required this.maxPrice,
+    required this.discountPercentage,
+    required this.ratingMin,
+    required this.sellerScoreMin,
+    required this.shippedFrom,
+    required this.delivery,
   });
 
-  Filter.fromJson(Map<String, dynamic> json) {
-    productName = json['productName'] ?? '';
-    minPrice = json['minPrice'] ?? 0;
-    maxPrice = json['maxPrice'] ?? 99999999999;
-    discountPercentage = json['discountPercentage'] ?? 0;
-    ratingMin = json['ratingMin'] ?? 0;
-    sellerScoreMin = json['sellerScoreMin'] ?? 0;
-    shippedFrom = json['shippedFrom'] ?? '';
-    delivery = json['delivery'] ?? '';
+  factory Filter.fromMap(Map<String, dynamic> map) {
+    return Filter(
+      category: map['category'] ?? '',
+      brandName: map['brandName'] ?? '',
+      minPrice: map['minPrice']?.toDouble() ?? 0,
+      maxPrice: map['maxPrice']?.toDouble() ?? 99999999999,
+      discountPercentage: map['discountPercentage']?.toDouble() ?? 0,
+      ratingMin: map['ratingMin']?.toDouble() ?? 0,
+      sellerScoreMin: map['sellerScoreMin']?.toDouble() ?? 0,
+      shippedFrom: map['shippedFrom'] ?? '',
+      delivery: map['delivery'] ?? '',
+    );
   }
 
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = {};
-    data['productName'] = productName;
-    data['minPrice'] = minPrice;
-    data['maxPrice'] = maxPrice;
-    data['discountPercentage'] = discountPercentage;
-    data['ratingMin'] = ratingMin;
-    data['sellerScoreMin'] = sellerScoreMin;
-    data['shippedFrom'] = shippedFrom;
-    data['delivery'] = delivery;
+  Map<String, dynamic> toMap() {
+    final Map<String, dynamic> map = {};
+    map['category'] = category;
+    map['brandName'] = brandName;
+    map['minPrice'] = minPrice;
+    map['maxPrice'] = maxPrice;
+    map['discountPercentage'] = discountPercentage;
+    map['ratingMin'] = ratingMin;
+    map['sellerScoreMin'] = sellerScoreMin;
+    map['shippedFrom'] = shippedFrom;
+    map['delivery'] = delivery;
 
-    return data;
+    return map;
   }
+
+  factory Filter.fromJson(String source) {
+    return Filter.fromMap(json.decode(source));
+  }
+
+  String toJson() => jsonEncode(toMap());
 }
