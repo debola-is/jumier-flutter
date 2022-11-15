@@ -14,20 +14,20 @@ Route<dynamic> generateRoute(RouteSettings routeSettings) {
   switch (routeSettings.name) {
     case GeneralHome.routeName:
       var page = routeSettings.arguments as int;
-      return MaterialPageRoute(
+      return CupertinoPageRoute(
         builder: (_) => GeneralHome(
           pageToDisplayOnNavigate: page,
         ),
       );
     case SeeAllProductsScreen.routeName:
       var categoryName = routeSettings.arguments as String;
-      return MaterialPageRoute(
+      return CupertinoPageRoute(
         builder: (_) => SeeAllProductsScreen(categoryName: categoryName),
       );
 
     case ProductDetailsScreen.routeName:
       var productName = routeSettings.arguments as String;
-      return MaterialPageRoute(
+      return CupertinoPageRoute(
         builder: (_) => ProductDetailsScreen(productName: productName),
       );
 
