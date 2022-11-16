@@ -74,7 +74,7 @@ Widget unitsLeft(int quantity) {
 }
 
 Widget shippingCost(double cost) {
-  return Text('+ ₦$cost shipping from LEKKI-AJAH (SANGOTEDO)');
+  return Text('+ shipping from  ₦$cost to LEKKI-AJAH (SANGOTEDO)');
 }
 
 MaterialButton customButton({

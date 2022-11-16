@@ -8,7 +8,12 @@ class FeedScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: getAppbar(title: 'Feed', context: context),
+      appBar: getAppbar(
+        title: 'Feed',
+        context: context,
+        showSearch: true,
+        showCart: true,
+      ),
       backgroundColor: backgroundGrey,
       body: Center(
         child: Padding(

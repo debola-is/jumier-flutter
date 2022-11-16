@@ -7,6 +7,7 @@ import 'package:jumier/features/cart/screens/saved_items_screen.dart';
 import 'package:jumier/features/product/filter/filter_screen.dart';
 import 'package:jumier/features/product/filter/select_options_screen.dart';
 import 'package:jumier/features/product/screens/product_details_screen.dart';
+import 'package:jumier/features/product/screens/product_ratings_screen.dart';
 import 'package:jumier/features/product/screens/see_all_products_screen.dart';
 import 'package:jumier/general_home.dart';
 
@@ -59,6 +60,11 @@ Route<dynamic> generateRoute(RouteSettings routeSettings) {
     case RecentlyViewedScreen.routeName:
       return CupertinoPageRoute(
         builder: (_) => const RecentlyViewedScreen(),
+      );
+
+    case VerifiedCustomerFeedbackScreen.routeName:
+      return MaterialPageRoute(
+        builder: (_) => const VerifiedCustomerFeedbackScreen(),
       );
     default:
       return MaterialPageRoute(

@@ -17,7 +17,12 @@ class _HelpScreenState extends State<HelpScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: getAppbar(title: 'Help', context: context),
+      appBar: getAppbar(
+        title: 'Help',
+        context: context,
+        showSearch: true,
+        showCart: true,
+      ),
       backgroundColor: backgroundGrey,
       body: ListView(
         children: [

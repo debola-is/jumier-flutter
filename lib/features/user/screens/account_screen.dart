@@ -14,6 +14,8 @@ class AccountScreen extends StatelessWidget {
       appBar: getAppbar(
         title: 'Account',
         context: context,
+        showSearch: true,
+        showCart: true,
       ),
       backgroundColor: backgroundGrey,
       body: Column(

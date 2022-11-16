@@ -56,7 +56,8 @@ PreferredSizeWidget getAppbar({
           ),
         if (showCart!)
           Padding(
-            padding: const EdgeInsets.only(left: 15),
+            padding: EdgeInsets.only(
+                left: showSearch ? 15 : 0, right: showHomeNavigator! ? 0 : 15),
             child: GestureDetector(
               onTap: () {
                 Navigator.pushNamed(context, CartScreen.routeName);
@@ -135,6 +136,7 @@ PreferredSizeWidget getSearchAppbar({
   return getAppbar(
     title: '',
     context: context,
+    showCart: true,
     titleWidget: TextField(
       controller: searchController,
       decoration: const InputDecoration(
@@ -146,7 +148,7 @@ PreferredSizeWidget getSearchAppbar({
             color: Colors.black45,
           ),
           borderRadius: BorderRadius.all(
-            Radius.circular(10),
+            Radius.circular(5),
           ),
         ),
         focusedBorder: OutlineInputBorder(
@@ -155,7 +157,7 @@ PreferredSizeWidget getSearchAppbar({
             width: 1,
           ),
           borderRadius: BorderRadius.all(
-            Radius.circular(10),
+            Radius.circular(5),
           ),
         ),
         constraints: BoxConstraints.expand(height: 40),
