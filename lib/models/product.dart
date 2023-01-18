@@ -5,6 +5,7 @@ import 'package:jumier/models/rating.dart';
 class Product {
   final String name;
   final String brand;
+  final String description;
   final double price;
   final double oldPrice;
   final int quantity;
@@ -20,6 +21,7 @@ class Product {
   Product({
     required this.name,
     required this.brand,
+    required this.description,
     required this.id,
     required this.images,
     required this.price,
@@ -37,6 +39,7 @@ class Product {
     return Product(
       name: map['name'] ?? '',
       brand: map['brand'] ?? '',
+      description: map['description'] ?? '',
       price: map['price']?.toDouble() ?? 0.0,
       quantity: map['quantity']?.toInt() ?? 0,
       oldPrice: map['oldPrice']?.toDouble() ?? 0.0,
@@ -67,6 +70,7 @@ class Product {
     Map<String, dynamic> data = {};
     data['name'] = name;
     data['brand'] = brand;
+    data['description'] = description;
     data['price'] = price;
     data['sellerName'] = sellerName;
     data['images'] = images;
