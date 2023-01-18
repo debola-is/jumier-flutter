@@ -2,12 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:jumier/common/widgets/appbars.dart';
 import 'package:jumier/constants.dart';
+import 'package:jumier/features/admin/screens/products_screen.dart';
 import 'package:jumier/features/user/widgets/account_action.dart';
 import 'package:jumier/features/user/widgets/info_tab.dart';
 
-class AccountScreen extends StatelessWidget {
+class AccountScreen extends StatefulWidget {
   const AccountScreen({super.key});
 
+  @override
+  State<AccountScreen> createState() => _AccountScreenState();
+}
+
+class _AccountScreenState extends State<AccountScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -100,6 +106,11 @@ class AccountScreen extends StatelessWidget {
                         title: 'Jumier Prime',
                         iconData: FontAwesomeIcons.crown,
                       ),
+                      AccountAction(
+                        onTap: navigateToAdmin,
+                        title: 'Admin',
+                        iconData: Icons.admin_panel_settings,
+                      ),
                     ],
                   ),
                 ),
@@ -145,5 +156,9 @@ class AccountScreen extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  void navigateToAdmin() {
+    Navigator.pushNamed(context, ProductsScreen.routeName);
   }
 }
