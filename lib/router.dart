@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:jumier/constants.dart';
+import 'package:jumier/features/admin/screens/products_screen.dart';
 import 'package:jumier/features/cart/screens/cart_screen.dart';
 import 'package:jumier/features/cart/screens/recently_viewed_screen.dart';
 import 'package:jumier/features/cart/screens/saved_items_screen.dart';
@@ -65,6 +66,11 @@ Route<dynamic> generateRoute(RouteSettings routeSettings) {
     case VerifiedCustomerFeedbackScreen.routeName:
       return MaterialPageRoute(
         builder: (_) => const VerifiedCustomerFeedbackScreen(),
+      );
+
+    case ProductsScreen.routeName:
+      return CupertinoPageRoute(
+        builder: (_) => const ProductsScreen(),
       );
     default:
       return MaterialPageRoute(
