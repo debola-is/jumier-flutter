@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:jumier/common/widgets/appbars.dart';
 import 'package:jumier/constants.dart';
-import 'package:jumier/features/admin/screens/products_screen.dart';
+import 'package:jumier/features/admin/screens/admin_products_screen.dart';
 import 'package:jumier/features/user/widgets/account_action.dart';
 import 'package:jumier/features/user/widgets/info_tab.dart';
 
@@ -159,6 +159,6 @@ class _AccountScreenState extends State<AccountScreen> {
   }
 
   void navigateToAdmin() {
-    Navigator.pushNamed(context, ProductsScreen.routeName);
+    Navigator.pushNamed(context, AdminProductsScreen.routeName);
   }
 }
