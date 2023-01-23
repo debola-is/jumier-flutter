@@ -12,8 +12,8 @@ class Product {
   final String sellerName;
   final List<String> images;
   final String category;
-  final List<String> subCategories;
-  final bool isExpressAvailable;
+  final String subCategory;
+  final String subSubCategory;
   final String id;
   final List<Rating>? ratings;
   final List<ProductVariant>? variants;
@@ -27,8 +27,8 @@ class Product {
     required this.price,
     required this.sellerName,
     required this.category,
-    required this.subCategories,
-    required this.isExpressAvailable,
+    required this.subCategory,
+    required this.subSubCategory,
     required this.quantity,
     required this.oldPrice,
     this.ratings,
@@ -46,8 +46,8 @@ class Product {
       sellerName: map['sellerName'] ?? '',
       images: map['images'] ?? [],
       category: map['category'] ?? '',
-      subCategories: map['subCategories'] ?? [],
-      isExpressAvailable: map['isExpressAvailable'] ?? false,
+      subCategory: map['subCategory'] ?? '',
+      subSubCategory: map['subSubCategory'] ?? '',
       id: map['_id'] ?? '',
       ratings: map['ratings'] != null
           ? List<Rating>.from(
@@ -72,11 +72,15 @@ class Product {
     data['brand'] = brand;
     data['description'] = description;
     data['price'] = price;
+    data['quantity'] = quantity;
+    data['oldPrice'] = oldPrice;
     data['sellerName'] = sellerName;
     data['images'] = images;
     data['category'] = category;
-    data['subCategories'] = subCategories;
+    data['subCategory'] = subCategory;
+    data['subSubCategory'] = subSubCategory;
     data['_id'] = id;
+    data['variants'] = variants;
     return data;
   }
 
