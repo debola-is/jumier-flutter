@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:jumier/constants.dart';
 
@@ -97,6 +100,77 @@ MaterialButton customButton({
           color: Colors.white.withOpacity(0.9),
           fontWeight: FontWeight.bold,
           fontSize: textSize ?? 12),
+    ),
+  );
+}
+
+Future<List<File>> selectImages() async {
+  List<File> images = [];
+  try {
+    var files = await FilePicker.platform.pickFiles(
+      type: FileType.image,
+      allowMultiple: true,
+    );
+    if (files != null && files.files.isNotEmpty) {
+      for (int i = 0; i < files.files.length; i++) {
+        images.add(File(files.files[i].path!));
+      }
+    }
+  } catch (e) {
+    debugPrint(e.toString());
+  }
+  return images;
+}
+
+void showSnackBar(
+  BuildContext context,
+  String text,
+  String type,
+) {
+  ScaffoldMessenger.of(context).showSnackBar(
+    SnackBar(
+      padding: const EdgeInsets.all(15),
+      duration: const Duration(milliseconds: 1500),
+      backgroundColor: type == "error"
+          ? const Color.fromARGB(255, 249, 225, 227)
+          : type == "success"
+              ? const Color.fromARGB(255, 236, 249, 236)
+              : const Color.fromARGB(255, 250, 248, 229),
+      behavior: SnackBarBehavior.floating,
+      content: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Expanded(
+            child: Text(
+              text,
+              style: TextStyle(
+                fontStyle: FontStyle.italic,
+                color: type == "error"
+                    ? Colors.red.shade900
+                    : type == "success"
+                        ? Colors.green.shade900
+                        : Colors.black,
+                overflow: TextOverflow.ellipsis,
+              ),
+            ),
+          ),
+          Icon(
+            type == "error"
+                ? Icons.error_outline_outlined
+                : type == "success"
+                    ? Icons.check_outlined
+                    : Icons.info_outline,
+            color: type == "error"
+                ? const Color.fromARGB(255, 168, 0, 0)
+                : type == "success"
+                    ? const Color.fromARGB(255, 18, 95, 23)
+                    : Colors.black,
+            size: 18,
+          ),
+        ],
+      ),
+      action: SnackBarAction(
+          label: 'Dismiss', textColor: Colors.black45, onPressed: () {}),
     ),
   );
 }
