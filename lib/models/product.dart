@@ -7,7 +7,7 @@ class Product {
   final String brand;
   final String description;
   final double price;
-  final double oldPrice;
+  final double? oldPrice;
   final int quantity;
   final String sellerName;
   final List<String> images;
@@ -30,7 +30,7 @@ class Product {
     required this.subCategory,
     required this.subSubCategory,
     required this.quantity,
-    required this.oldPrice,
+    this.oldPrice,
     this.ratings,
     this.variants,
   });
