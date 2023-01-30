@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:jumier/common/utils/utils.dart';
 import 'package:jumier/common/widgets/appbars.dart';
 import 'package:jumier/constants.dart';
 import 'package:jumier/features/admin/screens/admin_products_screen.dart';
+import 'package:jumier/features/user/screens/oders_screen.dart';
 import 'package:jumier/features/user/widgets/account_action.dart';
 import 'package:jumier/features/user/widgets/info_tab.dart';
 
@@ -67,12 +69,17 @@ class _AccountScreenState extends State<AccountScreen> {
                   child: Column(
                     children: [
                       AccountAction(
-                        onTap: () {},
+                        onTap: () {
+                          Navigator.pushNamed(context, OrdersScreen.routeName);
+                        },
                         title: 'Orders',
                         iconData: FontAwesomeIcons.box,
                       ),
                       AccountAction(
-                        onTap: () {},
+                        onTap: () {
+                          showSnackBar(
+                              context, 'Coming soon in future update', 'other');
+                        },
                         title: 'Inbox',
                         iconData: Icons.mail_outline_rounded,
                       ),
