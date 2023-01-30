@@ -7,13 +7,15 @@ import 'package:jumier/general_home.dart';
 PreferredSizeWidget getAppbar({
   required String title,
   required BuildContext context,
+  Size? size,
   Widget? titleWidget,
   bool? showSearch = false,
   bool? showCart = false,
   bool? showHomeNavigator = false,
+  PreferredSizeWidget? bottom,
 }) {
   return PreferredSize(
-    preferredSize: const Size.fromHeight(60),
+    preferredSize: size ?? const Size.fromHeight(60),
     child: AppBar(
       automaticallyImplyLeading: true,
       backgroundColor: shadeOfBlack,
@@ -125,6 +127,7 @@ PreferredSizeWidget getAppbar({
             },
           ),
       ],
+      bottom: bottom,
     ),
   );
 }
