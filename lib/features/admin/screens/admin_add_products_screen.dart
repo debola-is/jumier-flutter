@@ -12,6 +12,7 @@ import 'package:jumier/common/widgets/custom_scroll_behaviour.dart';
 import 'package:jumier/common/widgets/custom_text_field.dart';
 import 'package:jumier/constants.dart';
 import 'package:jumier/features/admin/widgets/variant_field.dart';
+import 'package:jumier/models/product.dart';
 
 class AdminAddProductScreen extends StatefulWidget {
   static const String routeName = '/admin_add_product_screen';
@@ -29,6 +30,9 @@ class _AdminAddProductScreenState extends State<AdminAddProductScreen> {
   final TextEditingController _priceController = TextEditingController();
   final TextEditingController _quantityController = TextEditingController();
   final TextEditingController _oldPriceController = TextEditingController();
+
+  final TextEditingController _appliedDiscountController =
+      TextEditingController();
   final _adminProductFormKey = GlobalKey<FormState>();
   List<VariantField> variants = [];
 
@@ -52,6 +56,7 @@ class _AdminAddProductScreenState extends State<AdminAddProductScreen> {
   String? _category;
   String? _subCategory;
   String? _subSubCategory;
+  double _appliedDiscount = 0.0;
   List<File> images = [];
 
   Padding displayImagesCount() {
@@ -92,6 +97,7 @@ class _AdminAddProductScreenState extends State<AdminAddProductScreen> {
     _priceController.dispose();
     _brandController.dispose();
     _quantityController.dispose();
+    _appliedDiscountController.dispose();
   }
 
   @override
@@ -243,6 +249,11 @@ class _AdminAddProductScreenState extends State<AdminAddProductScreen> {
                           createVariant();
                         }
                         if (!hasVariants) {
+                          for (int i = 0; i < variants.length; i++) {
+                            variants[i].nameController.dispose();
+                            variants[i].priceController.dispose();
+                            variants[i].quantityController.dispose();
+                          }
                           variants = [];
                         }
                       });
@@ -261,7 +272,29 @@ class _AdminAddProductScreenState extends State<AdminAddProductScreen> {
                             setState(() {
                               isDiscounted = value!;
                               if (isDiscounted) {
-                                _priceController.addListener(() {});
+                                _priceController.addListener(() {
+                                  if (_oldPriceController.text != '' &&
+                                      _priceController.text != '') {
+                                    try {
+                                      _appliedDiscount = (double.parse(
+                                                  _oldPriceController.text) -
+                                              double.parse(
+                                                  _priceController.text)) /
+                                          double.parse(
+                                              _oldPriceController.text) *
+                                          100;
+
+                                      _appliedDiscountController.text =
+                                          'Applied Discount: ${_appliedDiscount.floor().toString()}%';
+                                      setState(() {});
+                                    } catch (e) {
+                                      showSnackBar(
+                                          context,
+                                          'Please input a valid price',
+                                          'error');
+                                    }
+                                  }
+                                });
                               }
                             });
                           },
@@ -269,8 +302,10 @@ class _AdminAddProductScreenState extends State<AdminAddProductScreen> {
                         ),
                         if (isDiscounted)
                           CustomTextField(
-                              controller: _oldPriceController,
-                              hintText: 'Old Price'),
+                            controller: _oldPriceController,
+                            hintText: 'Old Price',
+                            inputType: TextInputType.number,
+                          ),
                         const SizedBox(
                           height: 10,
                         ),
@@ -279,6 +314,15 @@ class _AdminAddProductScreenState extends State<AdminAddProductScreen> {
                           hintText: 'Price',
                           inputType: TextInputType.number,
                         ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        if (isDiscounted)
+                          CustomTextField(
+                            controller: _appliedDiscountController,
+                            hintText: 'Applied Discount',
+                            readOnly: true,
+                          ),
                         const SizedBox(
                           height: 10,
                         ),
@@ -510,10 +554,14 @@ class _AdminAddProductScreenState extends State<AdminAddProductScreen> {
 
   void deleteImage(File image) {
     if (images.isNotEmpty) {
+      try {
+        images.remove(image);
+      } catch (e) {
+        showSnackBar(context, 'Could not delete image. Try again', 'error');
+      }
+
       if (mounted) {
-        setState(() {
-          images.remove(image);
-        });
+        setState(() {});
       }
     }
   }
