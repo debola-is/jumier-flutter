@@ -7,7 +7,8 @@ import 'package:jumier/general_home.dart';
 PreferredSizeWidget getAppbar({
   required String title,
   required BuildContext context,
-  Size? size,
+  Size?
+      size, // optional size parameter to appbar to accommmodate varying sizes in appbars with tab bar views or other bottom widget
   Widget? titleWidget,
   bool? showSearch = false,
   bool? showCart = false,
