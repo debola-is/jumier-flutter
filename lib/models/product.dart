@@ -14,7 +14,7 @@ class Product {
   final String category;
   final String subCategory;
   final String subSubCategory;
-  final String id;
+  final String? id;
   final List<Rating>? ratings;
   final List<ProductVariant>? variants;
 
@@ -22,7 +22,7 @@ class Product {
     required this.name,
     required this.brand,
     required this.description,
-    required this.id,
+    this.id,
     required this.images,
     required this.price,
     required this.sellerName,
