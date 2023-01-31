@@ -11,6 +11,7 @@ import 'package:jumier/features/product/filter/select_options_screen.dart';
 import 'package:jumier/features/product/screens/product_details_screen.dart';
 import 'package:jumier/features/product/screens/product_ratings_screen.dart';
 import 'package:jumier/features/product/screens/see_all_products_screen.dart';
+import 'package:jumier/features/user/screens/oders_screen.dart';
 import 'package:jumier/general_home.dart';
 
 Route<dynamic> generateRoute(RouteSettings routeSettings) {
@@ -76,6 +77,10 @@ Route<dynamic> generateRoute(RouteSettings routeSettings) {
     case AdminAddProductScreen.routeName:
       return CupertinoPageRoute(
         builder: (_) => const AdminAddProductScreen(),
+      );
+    case OrdersScreen.routeName:
+      return CupertinoPageRoute(
+        builder: (_) => const OrdersScreen(),
       );
     default:
       return MaterialPageRoute(
