@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jumier/common/widgets/appbars.dart';
+import 'package:jumier/constants.dart';
 import 'package:jumier/features/user/screens/order_screens/closed_orders_screen.dart';
 import 'package:jumier/features/user/screens/order_screens/open_orders_screen.dart';
 
@@ -28,18 +29,27 @@ class _OrdersScreenState extends State<OrdersScreen> {
           showSearch: true,
           showCart: true,
           size: const Size.fromHeight(100),
-          bottom: const TabBar(
-            labelColor: Colors.white,
-            tabs: [
-              Tab(
-                text: 'OPEN',
-              ),
-              Tab(
-                text: 'CLOSED',
-              ),
-            ],
-            labelStyle: TextStyle(
+          bottom: PreferredSize(
+            preferredSize: const Size.fromHeight(30),
+            child: Material(
               color: Colors.white,
+              child: TabBar(
+                labelColor: shadeOfOrange,
+                indicatorWeight: 3.0,
+                unselectedLabelColor: Colors.grey,
+                tabs: const [
+                  Tab(
+                    text: 'OPEN ORDERS',
+                  ),
+                  Tab(
+                    text: 'CLOSED ORDERS',
+                  ),
+                ],
+                labelStyle: const TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
             ),
           ),
         ),
