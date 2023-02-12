@@ -11,8 +11,10 @@ import 'package:jumier/features/product/filter/select_options_screen.dart';
 import 'package:jumier/features/product/screens/product_details_screen.dart';
 import 'package:jumier/features/product/screens/product_ratings_screen.dart';
 import 'package:jumier/features/product/screens/see_all_products_screen.dart';
-import 'package:jumier/features/user/screens/oders_screen.dart';
+import 'package:jumier/features/user/screens/all_orders_screen.dart';
+import 'package:jumier/features/user/screens/order_screens/order_details_screen.dart';
 import 'package:jumier/general_home.dart';
+import 'package:jumier/models/order.dart';
 
 Route<dynamic> generateRoute(RouteSettings routeSettings) {
   switch (routeSettings.name) {
@@ -81,6 +83,11 @@ Route<dynamic> generateRoute(RouteSettings routeSettings) {
     case OrdersScreen.routeName:
       return CupertinoPageRoute(
         builder: (_) => const OrdersScreen(),
+      );
+    case OrderDetailsScreen.routeName:
+      Order arguments = routeSettings.arguments as Order;
+      return CupertinoPageRoute(
+        builder: (_) => OrderDetailsScreen(order: arguments),
       );
     default:
       return MaterialPageRoute(
