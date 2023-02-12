@@ -4,7 +4,7 @@ import 'package:jumier/common/utils/utils.dart';
 import 'package:jumier/common/widgets/appbars.dart';
 import 'package:jumier/constants.dart';
 import 'package:jumier/features/admin/screens/admin_products_screen.dart';
-import 'package:jumier/features/user/screens/oders_screen.dart';
+import 'package:jumier/features/user/screens/all_orders_screen.dart';
 import 'package:jumier/features/user/widgets/account_action.dart';
 import 'package:jumier/features/user/widgets/info_tab.dart';
 
