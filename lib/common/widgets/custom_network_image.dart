@@ -17,7 +17,7 @@ class CustomNetworkImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FadeInImage.assetNetwork(
-      placeholder: 'assets/images/jumier.png',
+      placeholder: 'assets/images/cart-grey.jpg',
       image: imageSource,
       height: height,
       width: width,
