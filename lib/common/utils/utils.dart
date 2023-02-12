@@ -22,6 +22,58 @@ Widget freeDeliveryBadge() {
   );
 }
 
+Widget orderStatusBadge(int stage) {
+  // The stages of an order are 0 - pending, 1 - confirmed, 2 - shipped, 3 - delivered
+  String textString = '';
+  Color badgeColor = Colors.blue;
+  switch (stage) {
+    case 0:
+      textString = "pending confirmation";
+      badgeColor = Colors.grey;
+      break;
+    case 1:
+      textString = "confirmed";
+      break;
+    case 2:
+      textString = "shipped";
+      break;
+    case 3:
+      textString = "delivered";
+      badgeColor = Colors.green.shade300;
+      break;
+    case 4:
+      textString = "cancelled-payment unsuccessful";
+      badgeColor = Colors.grey;
+      break;
+    case 5:
+      textString = "cancelled-refund initiated";
+      badgeColor = Colors.grey;
+      break;
+    case 6:
+      textString = "refunded";
+      badgeColor = Colors.grey;
+      break;
+    default:
+      textString = "error";
+      badgeColor = Colors.grey;
+  }
+  return Container(
+    padding: const EdgeInsets.all(3.5),
+    decoration: BoxDecoration(
+      color: badgeColor,
+      borderRadius: BorderRadius.circular(2),
+    ),
+    child: Text(
+      textString.toUpperCase(),
+      style: const TextStyle(
+          color: Colors.white,
+          fontSize: 10,
+          fontWeight: FontWeight.w600,
+          letterSpacing: 0.5),
+    ),
+  );
+}
+
 Widget officialStoreBadge() {
   return Container(
     padding: const EdgeInsets.all(3),
