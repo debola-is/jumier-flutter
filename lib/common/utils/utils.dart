@@ -22,14 +22,14 @@ Widget freeDeliveryBadge() {
   );
 }
 
-Widget orderStatusBadge(int stage) {
+Widget orderStatusBadge({required int stage, Color? color}) {
   // The stages of an order are 0 - pending, 1 - confirmed, 2 - shipped, 3 - delivered
   String textString = '';
-  Color badgeColor = Colors.blue;
+  Color badgeColor = color ?? Colors.blue;
   switch (stage) {
     case 0:
       textString = "pending confirmation";
-      badgeColor = Colors.grey;
+      badgeColor = color ?? Colors.grey;
       break;
     case 1:
       textString = "confirmed";
@@ -39,20 +39,76 @@ Widget orderStatusBadge(int stage) {
       break;
     case 3:
       textString = "delivered";
-      badgeColor = Colors.green.shade300;
+      badgeColor = color ?? Colors.green.shade300;
       break;
     case 4:
       textString = "cancelled-payment unsuccessful";
-      badgeColor = Colors.grey;
+      badgeColor = color ?? Colors.grey;
       break;
     case 5:
       textString = "cancelled-refund initiated";
-      badgeColor = Colors.grey;
+      badgeColor = color ?? Colors.grey;
       break;
     case 6:
       textString = "refunded";
-      badgeColor = Colors.grey;
+      badgeColor = color ?? Colors.grey;
       break;
+    default:
+      textString = "error";
+      badgeColor = color ?? Colors.grey;
+  }
+  return Container(
+    padding: const EdgeInsets.all(3.5),
+    decoration: BoxDecoration(
+      color: badgeColor,
+      borderRadius: BorderRadius.circular(2),
+    ),
+    child: Text(
+      textString.toUpperCase(),
+      style: const TextStyle(
+          color: Colors.white,
+          fontSize: 10,
+          fontWeight: FontWeight.w600,
+          letterSpacing: 0.5),
+    ),
+  );
+}
+
+Widget trackingStatusBadge({required int orderStatus, required int step}) {
+  String textString = '';
+  Color badgeColor;
+  Color updateBadgeColor(int index) {
+    if (orderStatus > index) {
+      return Colors.blue.shade400;
+    } else if (orderStatus == index) {
+      return Colors.blue.shade900;
+    } else {
+      return Colors.grey;
+    }
+  }
+
+  switch (step) {
+    case 0:
+      textString = "order placed";
+      badgeColor = updateBadgeColor(0);
+      break;
+    case 1:
+      textString = "pending confirmation";
+      badgeColor = updateBadgeColor(1);
+      break;
+    case 2:
+      textString = "shipped";
+      badgeColor = updateBadgeColor(2);
+      break;
+    case 3:
+      textString = "out for delivery";
+      badgeColor = updateBadgeColor(3);
+      break;
+    case 4:
+      textString = "delivered";
+      badgeColor = updateBadgeColor(4);
+      break;
+
     default:
       textString = "error";
       badgeColor = Colors.grey;
