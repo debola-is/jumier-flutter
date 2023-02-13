@@ -14,6 +14,7 @@ class SingleOrderWidget extends StatelessWidget {
       onTap: () => Navigator.pushNamed(
         context,
         OrderDetailsScreen.routeName,
+        arguments: null,
       ),
       child: Container(
         margin: const EdgeInsets.symmetric(horizontal: 10),
@@ -43,7 +44,7 @@ class SingleOrderWidget extends StatelessWidget {
                   const SizedBox(height: 10),
                   const Text("Order #0123456789"),
                   const Expanded(child: SizedBox()),
-                  orderStatusBadge(5),
+                  orderStatusBadge(stage: 5),
                   Text(
                     'on ${DateTime.now().toString().split(' ')[0]}',
                     style: const TextStyle(
