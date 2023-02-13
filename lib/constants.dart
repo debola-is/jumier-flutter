@@ -7,7 +7,7 @@ import 'package:jumier/features/home/screens/home_screen.dart';
 import 'package:jumier/features/user/screens/account_screen.dart';
 
 Color shadeOfBlack = Colors.black.withOpacity(0.85);
-Color backgroundGrey = Colors.grey.shade200;
+Color backgroundGrey = Colors.grey.shade100;
 Color shadeOfOrange = const Color.fromRGBO(246, 133, 15, 1);
 Color shadeOfBlue = Colors.blue.shade800;
 Color shadeOfRed = const Color.fromRGBO(236, 28, 36, 1);
