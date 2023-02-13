@@ -4,7 +4,11 @@ import 'package:jumier/common/utils/utils.dart';
 import 'package:jumier/common/widgets/appbars.dart';
 import 'package:jumier/constants.dart';
 import 'package:jumier/features/admin/screens/admin_products_screen.dart';
+import 'package:jumier/features/cart/screens/recently_viewed_screen.dart';
+import 'package:jumier/features/cart/screens/saved_items_screen.dart';
 import 'package:jumier/features/user/screens/all_orders_screen.dart';
+import 'package:jumier/features/user/screens/pending_reviews_screen.dart';
+import 'package:jumier/features/user/screens/vouchers_screen.dart';
 import 'package:jumier/features/user/widgets/account_action.dart';
 import 'package:jumier/features/user/widgets/info_tab.dart';
 
@@ -84,22 +88,34 @@ class _AccountScreenState extends State<AccountScreen> {
                         iconData: Icons.mail_outline_rounded,
                       ),
                       AccountAction(
-                        onTap: () {},
+                        onTap: () {
+                          Navigator.pushNamed(
+                              context, PendingReviewsScreen.routeName);
+                        },
                         title: 'Ratings & Reviews',
                         iconData: Icons.rate_review_outlined,
                       ),
                       AccountAction(
-                        onTap: () {},
+                        onTap: () {
+                          Navigator.pushNamed(
+                              context, VouchersScreen.routeName);
+                        },
                         title: 'Vouchers',
                         iconData: FontAwesomeIcons.ticket,
                       ),
                       AccountAction(
-                        onTap: () {},
+                        onTap: () {
+                          Navigator.pushNamed(
+                              context, SavedItemsScreen.routeName);
+                        },
                         title: 'Saved Items',
                         iconData: FontAwesomeIcons.heart,
                       ),
                       AccountAction(
-                        onTap: () {},
+                        onTap: () {
+                          Navigator.pushNamed(
+                              context, RecentlyViewedScreen.routeName);
+                        },
                         title: 'Recently Viewed',
                         iconData: FontAwesomeIcons.clockRotateLeft,
                       ),
