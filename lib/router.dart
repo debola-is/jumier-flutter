@@ -13,6 +13,10 @@ import 'package:jumier/features/product/screens/product_ratings_screen.dart';
 import 'package:jumier/features/product/screens/see_all_products_screen.dart';
 import 'package:jumier/features/user/screens/all_orders_screen.dart';
 import 'package:jumier/features/user/screens/order_screens/order_details_screen.dart';
+import 'package:jumier/features/user/screens/order_screens/order_tracking_screen.dart';
+import 'package:jumier/features/user/screens/pending_reviews_screen.dart';
+import 'package:jumier/features/user/screens/rate_product_screen.dart';
+import 'package:jumier/features/user/screens/vouchers_screen.dart';
 import 'package:jumier/general_home.dart';
 import 'package:jumier/models/order.dart';
 
@@ -84,10 +88,31 @@ Route<dynamic> generateRoute(RouteSettings routeSettings) {
       return CupertinoPageRoute(
         builder: (_) => const OrdersScreen(),
       );
-    case OrderDetailsScreen.routeName:
-      Order arguments = routeSettings.arguments as Order;
+    case PendingReviewsScreen.routeName:
       return CupertinoPageRoute(
-        builder: (_) => OrderDetailsScreen(order: arguments),
+        builder: (_) => const PendingReviewsScreen(),
+      );
+    case RateProductScreen.routeName:
+      return CupertinoPageRoute(
+        builder: (_) => const RateProductScreen(),
+      );
+    case VouchersScreen.routeName:
+      return CupertinoPageRoute(
+        builder: (_) => const VouchersScreen(),
+      );
+    case OrderDetailsScreen.routeName:
+      // TODO:
+      // Order arguments = routeSettings.arguments as Order;
+      return CupertinoPageRoute(
+        builder: (_) => const OrderDetailsScreen(order: null),
+      );
+    case OrderTrackingScreen.routeName:
+      // TODO: parse the correct input for order status
+      // int arguments = routeSettings.arguments as int;
+      return CupertinoPageRoute(
+        builder: (_) => const OrderTrackingScreen(
+          status: 0,
+        ),
       );
     default:
       return MaterialPageRoute(
