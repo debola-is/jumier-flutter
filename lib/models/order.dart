@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:jumier/models/address.dart';
 import 'package:jumier/models/product.dart';
 
 class Order {
@@ -9,8 +10,7 @@ class Order {
   final int status;
   final String id;
   final String userId;
-  final String deliveryAddress;
-  // Address string is a combination of  various components: house number, street name, city name and state name. All these components should be joined at the server level by a double percentage sign "%%"
+  final Address deliveryAddress;
 
   Order({
     required this.products,
@@ -42,7 +42,7 @@ class Order {
       status: map['status']?.toInt() ?? 0,
       id: map['_id'] ?? '',
       userId: map['userId'] ?? '',
-      deliveryAddress: map['deliveryAddress'] ?? '',
+      deliveryAddress: Address.fromMap(map['deliveryAddress']),
     );
   }
 
