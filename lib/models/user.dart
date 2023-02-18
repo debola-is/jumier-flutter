@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:jumier/models/product.dart';
 
 class User {
@@ -12,6 +14,7 @@ class User {
   final List<Product>? cart;
   final List<Product>? recentlyViewed;
   final List<Product>? savedItems;
+  final String? searchHistory;
 
   User({
     required this.firstName,
@@ -25,6 +28,7 @@ class User {
     required this.cart,
     required this.recentlyViewed,
     required this.savedItems,
+    required this.searchHistory,
   });
 
   factory User.fromMap(Map<String, dynamic> map) {
@@ -58,6 +62,7 @@ class User {
               ),
             )
           : null,
+      searchHistory: map['searchHistory'] ?? [],
     );
   }
   Map<String, dynamic> toMap() {
@@ -71,6 +76,11 @@ class User {
     data['token'] = token;
     data['id'] = id;
     data['cart'] = cart;
+    data['searchHistory'] = searchHistory;
     return data;
   }
+
+  String toJson() => json.encode(toMap());
+
+  factory User.fromJson(String source) => User.fromMap(json.decode(source));
 }
