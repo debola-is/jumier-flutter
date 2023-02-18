@@ -3,19 +3,25 @@ import 'dart:convert';
 class Rating {
   final String userId;
   final double rating;
-  final String review;
+  final String? reviewTitle;
+  final String? reviewContent;
+  final String? reviewerName;
 
   Rating({
     required this.userId,
     required this.rating,
-    required this.review,
+    required this.reviewTitle,
+    required this.reviewContent,
+    required this.reviewerName,
   });
 
   Map<String, dynamic> toMap() {
     return {
       'userId': userId,
       'rating': rating,
-      'review': review,
+      'review': reviewTitle,
+      'reviewContent': reviewContent,
+      'reviewerName': reviewerName,
     };
   }
 
@@ -23,7 +29,9 @@ class Rating {
     return Rating(
       userId: map['userId'] ?? '',
       rating: map['rating']?.toDouble() ?? 0.0,
-      review: map['review'] ?? '',
+      reviewTitle: map['reviewTitle'] ?? '',
+      reviewContent: map['reviewContent'] ?? '',
+      reviewerName: map['reviewerName'] ?? '',
     );
   }
 
