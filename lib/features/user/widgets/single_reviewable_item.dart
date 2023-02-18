@@ -12,7 +12,7 @@ class SingleReviewableItem extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 10),
       padding: const EdgeInsets.all(10),
-      height: 210.0,
+      height: 190.0,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
         color: Colors.white,
@@ -20,20 +20,20 @@ class SingleReviewableItem extends StatelessWidget {
       child: Column(
         children: [
           SizedBox(
-            height: 120,
+            height: 100.0,
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const CustomNetworkImage(
                     imageSource:
                         "https://ng.jumia.is/cms/0-1-christmas-sale/2022/thumbnails/portable-power_220x220.png",
-                    height: 120,
-                    width: 120),
+                    height: 100.0,
+                    width: 100.0),
                 const SizedBox(
                   width: 5.0,
                 ),
                 SizedBox(
-                  width: screenWidth(context) - 180,
+                  width: screenWidth(context) - 160,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
