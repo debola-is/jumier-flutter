@@ -10,6 +10,7 @@ import 'package:jumier/features/product/filter/filter_screen.dart';
 import 'package:jumier/features/product/filter/select_options_screen.dart';
 import 'package:jumier/features/product/screens/product_details_screen.dart';
 import 'package:jumier/features/product/screens/product_ratings_screen.dart';
+import 'package:jumier/features/product/screens/product_reviews_screen.dart';
 import 'package:jumier/features/product/screens/see_all_products_screen.dart';
 import 'package:jumier/features/user/screens/add_new_address.dart';
 import 'package:jumier/features/user/screens/address_book_screen.dart';
@@ -22,8 +23,6 @@ import 'package:jumier/features/user/screens/rate_product_screen.dart';
 import 'package:jumier/features/user/screens/recently_searched_screen.dart';
 import 'package:jumier/features/user/screens/vouchers_screen.dart';
 import 'package:jumier/general_home.dart';
-import 'package:jumier/models/address.dart';
-import 'package:jumier/models/order.dart';
 
 Route<dynamic> generateRoute(RouteSettings routeSettings) {
   switch (routeSettings.name) {
@@ -44,6 +43,11 @@ Route<dynamic> generateRoute(RouteSettings routeSettings) {
       var productName = routeSettings.arguments as String;
       return CupertinoPageRoute(
         builder: (_) => ProductDetailsScreen(productName: productName),
+      );
+
+    case ProductReviewsScreen.routeName:
+      return CupertinoPageRoute(
+        builder: (_) => const ProductReviewsScreen(),
       );
 
     case FilterScreen.routeName:
