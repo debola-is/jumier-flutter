@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:jumier/models/address.dart';
 import 'package:jumier/models/product.dart';
 
 class User {
@@ -8,7 +9,8 @@ class User {
   final String lastName;
   final String phoneNumber;
   final String email;
-  final List<String> addresses;
+  final List<Address>? addresses;
+  final int defaultAddress;
   final String token;
   final String id;
   final List<Product>? cart;
@@ -29,6 +31,7 @@ class User {
     required this.recentlyViewed,
     required this.savedItems,
     required this.searchHistory,
+    required this.defaultAddress,
   });
 
   factory User.fromMap(Map<String, dynamic> map) {
@@ -38,7 +41,14 @@ class User {
       lastName: map['lastName'] ?? '',
       phoneNumber: map['phoneNumber'] ?? '',
       email: map['email'] ?? '',
-      addresses: map['addresses'] ?? [],
+      addresses: map['addresses'] != null
+          ? List<Address>.from(
+              map['addresses']?.map(
+                (x) => Address.fromMap(x),
+              ),
+            )
+          : null,
+      defaultAddress: map['defaultAddress'] ?? 0,
       token: map['token'] ?? '',
       id: map['_id'] ?? '',
       cart: map['cart'] != null
@@ -73,6 +83,7 @@ class User {
     data['phoneNumber'] = phoneNumber;
     data['email'] = email;
     data['addresses'] = addresses;
+    data['defaultAddress'] = defaultAddress;
     data['token'] = token;
     data['id'] = id;
     data['cart'] = cart;
