@@ -8,8 +8,9 @@ import 'package:jumier/features/user/screens/account_screen.dart';
 
 Color shadeOfBlack = Colors.black.withOpacity(0.85);
 Color backgroundGrey = Colors.grey.shade100;
-Color shadeOfOrange = const Color.fromRGBO(246, 133, 15, 1);
+Color shadeOfOrange = const Color.fromRGBO(251, 178, 21, 1);
 Color shadeOfBlue = Colors.blue.shade800;
+Color shadeOfGrey = const Color.fromRGBO(245, 245, 245, 1);
 Color shadeOfRed = const Color.fromRGBO(236, 28, 36, 1);
 List<String> carouselImages = [
   'assets/carousel_images/carousel1.png',
