@@ -9,8 +9,7 @@ import 'package:jumier/features/cart/screens/saved_items_screen.dart';
 import 'package:jumier/features/product/filter/filter_screen.dart';
 import 'package:jumier/features/product/filter/select_options_screen.dart';
 import 'package:jumier/features/product/screens/product_details_screen.dart';
-import 'package:jumier/features/product/screens/product_ratings_screen.dart';
-import 'package:jumier/features/product/screens/product_reviews_screen.dart';
+import 'package:jumier/features/product/screens/verified_customer_feedback.dart';
 import 'package:jumier/features/product/screens/see_all_products_screen.dart';
 import 'package:jumier/features/user/screens/add_new_address.dart';
 import 'package:jumier/features/user/screens/address_book_screen.dart';
@@ -45,9 +44,9 @@ Route<dynamic> generateRoute(RouteSettings routeSettings) {
         builder: (_) => ProductDetailsScreen(productName: productName),
       );
 
-    case ProductReviewsScreen.routeName:
+    case VerifiedCustomerFeedbackScreen.routeName:
       return CupertinoPageRoute(
-        builder: (_) => const ProductReviewsScreen(),
+        builder: (_) => const VerifiedCustomerFeedbackScreen(),
       );
 
     case FilterScreen.routeName:
