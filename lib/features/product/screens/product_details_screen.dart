@@ -1,13 +1,18 @@
 import 'package:csc_picker/csc_picker.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:jumier/common/utils/utils.dart';
 import 'package:jumier/common/widgets/appbars.dart';
+import 'package:jumier/common/widgets/custom_button.dart';
 import 'package:jumier/common/widgets/custom_network_image.dart';
 import 'package:jumier/common/widgets/custom_scroll_behaviour.dart';
 import 'package:jumier/constants.dart';
-import 'package:jumier/features/product/screens/product_ratings_screen.dart';
+import 'package:jumier/features/cart/widgets/recently_viewed.dart';
+import 'package:jumier/features/cart/widgets/recommended_for_you.dart';
+import 'package:jumier/features/product/screens/product_description_screen.dart';
+import 'package:jumier/features/product/screens/verified_customer_feedback.dart';
 import 'package:jumier/features/user/widgets/info_tab.dart';
 
 class ProductDetailsScreen extends StatefulWidget {
@@ -25,6 +30,7 @@ class ProductDetailsScreen extends StatefulWidget {
 class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
   String _state = '';
   String _country = 'Nigeria';
+  bool isInCart = false;
 
   String _city = '';
   @override
@@ -115,61 +121,63 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                       ),
                     ),
                     const SizedBox(height: 10),
-                    Row(
-                      children: [
-                        RatingBarIndicator(
-                          rating: 4.4,
-                          itemSize: 16,
-                          itemBuilder: (context, index) => const Icon(
-                            Icons.star,
-                            color: Colors.orange,
+                    InkWell(
+                      onTap: () => Navigator.pushNamed(
+                        context,
+                        VerifiedCustomerFeedbackScreen.routeName,
+                      ),
+                      child: Row(
+                        children: [
+                          RatingBarIndicator(
+                            rating: 4.4,
+                            itemSize: 16,
+                            itemBuilder: (context, index) => const Icon(
+                              Icons.star,
+                              color: Colors.orange,
+                            ),
                           ),
-                        ),
-                        const SizedBox(
-                          width: 10,
-                        ),
-                        GestureDetector(
-                          onTap: () => Navigator.pushNamed(
-                            context,
-                            VerifiedCustomerFeedbackScreen.routeName,
+                          const SizedBox(
+                            width: 10,
                           ),
-                          child: Text(
+                          Text(
                             '52 ratings or No ratings available',
                             style: TextStyle(color: shadeOfBlue),
                           ),
-                        ),
-                        const Expanded(
-                          child: SizedBox(
-                            height: 10,
+                          const Expanded(
+                            child: SizedBox(
+                              height: 10,
+                            ),
                           ),
-                        ),
-                        InkWell(
-                          onTap: () {},
-                          child: Icon(
-                            Icons.share,
-                            color: shadeOfOrange,
+                          InkWell(
+                            onTap: () {},
+                            child: Icon(
+                              Icons.share,
+                              size: 24,
+                              color: shadeOfOrange,
+                            ),
                           ),
-                        ),
-                        const SizedBox(
-                          width: 40,
-                        ),
-                        RatingBar(
-                          itemCount: 1,
-                          maxRating: 1,
-                          minRating: 0,
-                          allowHalfRating: false,
-                          initialRating: 0,
-                          itemSize: 20,
-                          ratingWidget: RatingWidget(
-                            empty: Image.asset(
-                                'assets/rating_images/heart_border.png'),
-                            full: Image.asset('assets/rating_images/heart.png'),
-                            half: Image.asset(
-                                'assets/rating_images/heart_half.png'),
+                          const SizedBox(
+                            width: 40,
                           ),
-                          onRatingUpdate: (value) {},
-                        )
-                      ],
+                          RatingBar(
+                            itemCount: 1,
+                            maxRating: 1,
+                            minRating: 0,
+                            allowHalfRating: false,
+                            initialRating: 0,
+                            itemSize: 20,
+                            ratingWidget: RatingWidget(
+                              empty: Image.asset(
+                                  'assets/rating_images/heart_border.png'),
+                              full:
+                                  Image.asset('assets/rating_images/heart.png'),
+                              half: Image.asset(
+                                  'assets/rating_images/heart_half.png'),
+                            ),
+                            onRatingUpdate: (value) {},
+                          )
+                        ],
+                      ),
                     ),
                     const SizedBox(height: 5),
                   ],
@@ -181,14 +189,21 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                 child: Column(
                   children: [
                     Row(
-                      children: const [
-                        CircleAvatar(
-                          foregroundImage:
-                              AssetImage('assets/images/jumier.png'),
-                          backgroundColor: Colors.white,
-                          radius: 25,
+                      children: [
+                        Container(
+                          height: 50,
+                          width: 50,
+                          padding: const EdgeInsets.all(10),
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(25),
+                              color: Colors.white),
+                          child: Image.asset(
+                            'assets/images/jumier.png',
+                            cacheWidth: 125,
+                            cacheHeight: 125,
+                          ),
                         ),
-                        Flexible(
+                        const Flexible(
                           child: Text(
                             'Enjoy cheaper shipping fees when you select a PickUp Station at checkout.',
                           ),
@@ -301,22 +316,35 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                 color: Colors.white,
                 child: Column(
                   children: [
-                    Padding(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 15, vertical: 10),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: const [
-                          Text(
-                            'Description',
-                            style: TextStyle(fontWeight: FontWeight.w500),
-                          ),
-                          Icon(
-                            Icons.keyboard_arrow_right,
-                            color: Colors.black,
-                            size: 24,
-                          )
-                        ],
+                    InkWell(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            CupertinoPageRoute(
+                              builder: (context) =>
+                                  const ProductDescriptionScreen(
+                                      description: 'description',
+                                      keyFeatures: 'keyFeatures',
+                                      specifications: 'specifications'),
+                            ));
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 15, vertical: 10),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: const [
+                            Text(
+                              'Description',
+                              style: TextStyle(fontWeight: FontWeight.w500),
+                            ),
+                            Icon(
+                              Icons.keyboard_arrow_right,
+                              color: Colors.black,
+                              size: 24,
+                            )
+                          ],
+                        ),
                       ),
                     ),
                     const Divider(
@@ -336,8 +364,121 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                 ),
               ),
               const InfoTab(description: 'CUSTOMERS ALSO VIEWED'),
+              const Recommendatios(showDescription: false),
+              const InfoTab(description: 'RECENTLY VIEWED'),
+              const RecentlyViewed(showDescription: false),
             ],
           ),
+        ),
+      ),
+      bottomNavigationBar: Container(
+        decoration: BoxDecoration(
+            color: Colors.white,
+            border: Border(top: BorderSide(color: backgroundGrey, width: 2.0))),
+        padding: const EdgeInsets.all(15.0),
+        child: Row(
+          children: [
+            CustomButton(
+              onTap: () {},
+              height: 40,
+              width: 40,
+              content: Icon(
+                Icons.home_outlined,
+                color: shadeOfOrange,
+                size: 20,
+              ),
+              showBorder: true,
+              showShadows: false,
+            ),
+            const SizedBox(width: 10),
+            CustomButton(
+              onTap: () {},
+              height: 40,
+              width: 40,
+              content: Icon(
+                Icons.phone,
+                color: shadeOfOrange,
+                size: 20,
+              ),
+              showBorder: true,
+              showShadows: false,
+            ),
+            const SizedBox(width: 10),
+            if (!isInCart)
+              CustomButton(
+                onTap: () {
+                  isInCart = true;
+                  if (mounted) {
+                    setState(() {});
+                  }
+                },
+                height: 50,
+                width: screenWidth(context) - 130,
+                showShadows: false,
+                content: SizedBox(
+                  width: double.infinity,
+                  child: Stack(
+                    children: const [
+                      Positioned(
+                        left: 10,
+                        top: 10,
+                        child: Icon(
+                          Icons.add_shopping_cart_rounded,
+                          color: Colors.white,
+                          size: 30,
+                        ),
+                      ),
+                      Center(
+                        child: Text(
+                          'ADD TO CART',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 14,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            if (isInCart)
+              CustomButton(
+                onTap: () {
+                  isInCart = false;
+                  if (mounted) {
+                    setState(() {});
+                  }
+                },
+                height: 50,
+                width: 50,
+                content: const Icon(
+                  Icons.remove,
+                  color: Colors.white,
+                  size: 30,
+                ),
+                showShadows: false,
+              ),
+            if (isInCart)
+              const Expanded(
+                child: Text(
+                  '1',
+                  textAlign: TextAlign.center,
+                ),
+              ),
+            if (isInCart)
+              CustomButton(
+                onTap: () {},
+                height: 50,
+                width: 50,
+                content: const Icon(
+                  Icons.add,
+                  color: Colors.white,
+                  size: 30,
+                ),
+                showShadows: false,
+              ),
+          ],
         ),
       ),
     );

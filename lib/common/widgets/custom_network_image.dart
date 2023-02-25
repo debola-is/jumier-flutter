@@ -27,18 +27,16 @@ class CustomNetworkImage extends StatelessWidget {
       placeholderCacheHeight: height.floor(),
       placeholderCacheWidth: width.floor(),
       imageErrorBuilder: (context, error, stackTrace) => SizedBox(
-          height: height,
-          width: width,
-          child: Padding(
-            padding: EdgeInsets.symmetric(
-              horizontal: width / 2.5,
-              vertical: height / 2.5,
-            ),
-            child: CircularProgressIndicator(
-              strokeWidth: 2,
-              color: shadeOfOrange,
-            ),
-          )),
+        height: height,
+        width: width,
+        child: Center(
+          child: Icon(
+            Icons.error_outline_rounded,
+            color: shadeOfOrange,
+            size: 30,
+          ),
+        ),
+      ),
     );
   }
 }

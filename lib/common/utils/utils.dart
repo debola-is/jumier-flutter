@@ -244,7 +244,7 @@ void showSnackBar(
           : type == "success"
               ? const Color.fromARGB(255, 236, 249, 236)
               : const Color.fromARGB(255, 250, 248, 229),
-      behavior: SnackBarBehavior.floating,
+      behavior: SnackBarBehavior.fixed,
       content: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -277,8 +277,6 @@ void showSnackBar(
           ),
         ],
       ),
-      action: SnackBarAction(
-          label: 'Dismiss', textColor: Colors.black45, onPressed: () {}),
     ),
   );
 }

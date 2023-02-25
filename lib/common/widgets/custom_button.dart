@@ -12,9 +12,10 @@ class CustomButton extends StatelessWidget {
   final bool? showShadows;
   final double? borderRadius;
   final bool? enabled;
+  final Widget? content;
   const CustomButton({
     Key? key,
-    required this.text,
+    this.text = 'Give custom text Parameter',
     required this.onTap,
     this.textStyle,
     this.width,
@@ -23,6 +24,7 @@ class CustomButton extends StatelessWidget {
     this.showShadows = true,
     this.borderRadius = 5,
     this.enabled = true,
+    this.content,
   }) : super(key: key);
 
   @override
@@ -49,15 +51,16 @@ class CustomButton extends StatelessWidget {
               showBorder! ? Border.all(color: shadeOfOrange, width: 1.5) : null,
         ),
         child: Center(
-          child: Text(
-            text.toUpperCase(),
-            style: textStyle ??
-                TextStyle(
-                  color: showBorder! ? shadeOfOrange : Colors.white,
-                  fontSize: 14,
-                  fontWeight: FontWeight.w600,
-                ),
-          ),
+          child: content ??
+              Text(
+                text.toUpperCase(),
+                style: textStyle ??
+                    TextStyle(
+                      color: showBorder! ? shadeOfOrange : Colors.white,
+                      fontSize: 14,
+                      fontWeight: FontWeight.w600,
+                    ),
+              ),
         ),
       ),
     );

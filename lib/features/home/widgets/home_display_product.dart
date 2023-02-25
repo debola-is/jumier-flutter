@@ -14,7 +14,7 @@ class HomeDisplayProduct extends StatefulWidget {
   final String imageSource;
   const HomeDisplayProduct({
     super.key,
-    this.height = 120,
+    this.height = 100,
     this.width = 160,
     this.displayItemsRemaining = false,
     this.displayAddToCartButton = false,
@@ -46,11 +46,12 @@ class _HomeDisplayProductState extends State<HomeDisplayProduct> {
     return Container(
       height: widget.height,
       width: widget.width,
-      padding: const EdgeInsets.symmetric(horizontal: 5),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+      color: Colors.white,
+      padding: const EdgeInsets.all(10),
+      child: Stack(
         children: [
-          Stack(
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 10),
@@ -65,87 +66,87 @@ class _HomeDisplayProductState extends State<HomeDisplayProduct> {
                   ),
                 ),
               ),
-              Positioned(
-                right: 0,
-                child: Container(
-                  alignment: Alignment.center,
-                  height: 25,
-                  width: 50,
-                  decoration: BoxDecoration(
-                    color: Colors.orange.shade50,
-                    borderRadius: BorderRadius.circular(5),
-                  ),
-                  child: const Text(
-                    '-38%',
+              const SizedBox(
+                height: 15,
+              ),
+              const Text(
+                'Product Name',
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(
+                  fontSize: 12,
+                ),
+                maxLines: 1,
+              ),
+              const SizedBox(
+                height: 5,
+              ),
+              const Text(
+                '₦ 150,000',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 15,
+                ),
+              ),
+              if (widget.displayItemsRemaining!)
+                Column(
+                  children: [
+                    Container(
+                      height: 10,
+                      margin: const EdgeInsets.symmetric(vertical: 5),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        gradient: LinearGradient(
+                          begin: Alignment.centerLeft,
+                          end: Alignment.centerRight,
+                          colors: [
+                            _changeColor(_percentRemaining),
+                            Colors.grey.shade300
+                          ],
+                          stops: [_percentRemaining!, 0],
+                        ),
+                      ),
+                    ),
+                    TextButton(
+                      onPressed: _updateItemsRemaining,
+                      child: const Text('Click me'),
+                    ),
+                  ],
+                ),
+              if (widget.displayAddToCartButton!)
+                customButton(title: 'ADD TO CART', height: 35),
+              if (widget.displayPreviousPrice!)
+                const Padding(
+                  padding: EdgeInsets.only(top: 10),
+                  child: Text(
+                    '₦ 170,000',
                     style: TextStyle(
-                      color: Colors.orange,
-                      fontWeight: FontWeight.w600,
+                      color: Colors.black26,
+                      fontSize: 12,
+                      decoration: TextDecoration.lineThrough,
                     ),
                   ),
                 ),
-              )
             ],
           ),
-          const SizedBox(
-            height: 15,
-          ),
-          const Text(
-            'Product Name',
-            overflow: TextOverflow.ellipsis,
-            style: TextStyle(
-              fontSize: 12,
-            ),
-            maxLines: 1,
-          ),
-          const SizedBox(
-            height: 5,
-          ),
-          const Text(
-            '₦ 150,000',
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 15,
-            ),
-          ),
-          if (widget.displayItemsRemaining!)
-            Column(
-              children: [
-                Container(
-                  height: 10,
-                  margin: const EdgeInsets.symmetric(vertical: 5),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    gradient: LinearGradient(
-                      begin: Alignment.centerLeft,
-                      end: Alignment.centerRight,
-                      colors: [
-                        _changeColor(_percentRemaining),
-                        Colors.grey.shade300
-                      ],
-                      stops: [_percentRemaining!, 0],
-                    ),
-                  ),
-                ),
-                TextButton(
-                  onPressed: _updateItemsRemaining,
-                  child: const Text('Click me'),
-                ),
-              ],
-            ),
-          if (widget.displayAddToCartButton!)
-            customButton(title: 'ADD TO CART', height: 35),
-          if (widget.displayPreviousPrice!)
-            const Padding(
-              padding: EdgeInsets.only(top: 10),
-              child: Text(
-                '₦ 170,000',
+          Positioned(
+            right: 0,
+            child: Container(
+              alignment: Alignment.center,
+              height: 25,
+              width: 50,
+              decoration: BoxDecoration(
+                color: Colors.orange.shade50,
+                borderRadius: BorderRadius.circular(5),
+              ),
+              child: const Text(
+                '-38%',
                 style: TextStyle(
-                  color: Colors.black26,
-                  fontSize: 12,
-                  decoration: TextDecoration.lineThrough,
+                  color: Colors.orange,
+                  fontWeight: FontWeight.w600,
                 ),
               ),
             ),
+          ),
         ],
       ),
     );
