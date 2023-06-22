@@ -3,7 +3,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:jumier/common/utils/utils.dart';
 import 'package:jumier/common/widgets/appbars.dart';
 import 'package:jumier/common/widgets/custom_scroll_behaviour.dart';
-import 'package:jumier/constants.dart';
+import 'package:jumier/global_variables.dart';
 import 'package:jumier/features/admin/screens/admin_products_screen.dart';
 import 'package:jumier/features/cart/screens/recently_viewed_screen.dart';
 import 'package:jumier/features/cart/screens/saved_items_screen.dart';
@@ -88,8 +88,11 @@ class _AccountScreenState extends State<AccountScreen> {
                         ),
                         AccountAction(
                           onTap: () {
-                            showSnackBar(context,
-                                'Coming soon in future update', 'other');
+                            showSnackBar(
+                              context,
+                              'Coming soon in future update',
+                              ErrorType.warning,
+                            );
                           },
                           title: 'Inbox',
                           iconData: Icons.mail_outline_rounded,

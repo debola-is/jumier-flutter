@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jumier/common/widgets/custom_scroll_behaviour.dart';
-import 'package:jumier/constants.dart';
+import 'package:jumier/global_variables.dart';
 import 'package:jumier/features/cart/screens/saved_items_screen.dart';
 import 'package:jumier/features/home/widgets/home_display_product.dart';
 

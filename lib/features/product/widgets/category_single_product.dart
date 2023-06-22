@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:jumier/common/utils/utils.dart';
 import 'package:jumier/common/widgets/custom_network_image.dart';
-import 'package:jumier/constants.dart';
+import 'package:jumier/global_variables.dart';
 import 'package:jumier/features/product/screens/see_all_products_screen.dart';
 
 class CategorySingleProduct extends StatelessWidget {

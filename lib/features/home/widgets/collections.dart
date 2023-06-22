@@ -1,6 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:jumier/constants.dart';
+import 'package:jumier/global_variables.dart';
 
 const Map<String, List<String>> _collections = {
   'phone deals': [

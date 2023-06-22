@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:jumier/common/widgets/appbars.dart';
 import 'package:jumier/common/widgets/custom_button.dart';
-import 'package:jumier/constants.dart';
+import 'package:jumier/global_variables.dart';
 import 'package:jumier/features/user/widgets/account_action.dart';
 import 'package:jumier/features/user/widgets/info_tab.dart';
 

@@ -1,7 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:jumier/common/widgets/custom_loaders.dart';
-import 'package:jumier/constants.dart';
+import 'package:jumier/global_variables.dart';
 import 'package:jumier/features/product/screens/product_details_screen.dart';
 
 class SubCategory extends StatelessWidget {

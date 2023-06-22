@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:jumier/constants.dart';
+import 'package:jumier/global_variables.dart';
 import 'package:jumier/features/admin/screens/admin_add_products_screen.dart';
 import 'package:jumier/features/admin/screens/admin_products_screen.dart';
 import 'package:jumier/features/cart/screens/cart_screen.dart';

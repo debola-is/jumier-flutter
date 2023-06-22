@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:jumier/common/utils/utils.dart';
 import 'package:jumier/common/widgets/appbars.dart';
-import 'package:jumier/constants.dart';
+import 'package:jumier/global_variables.dart';
 
 class OrderTrackingScreen extends StatelessWidget {
   static const routeName = './account/orders/order/track';

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:jumier/common/utils/utils.dart';
 import 'package:jumier/common/widgets/custom_network_image.dart';
-import 'package:jumier/constants.dart';
+import 'package:jumier/global_variables.dart';
 import 'package:jumier/features/user/screens/order_screens/order_details_screen.dart';
 
 class SingleOrderWidget extends StatelessWidget {

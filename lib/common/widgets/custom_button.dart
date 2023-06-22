@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../constants.dart';
+import '../../global_variables.dart';
 
 class CustomButton extends StatelessWidget {
   final String text;

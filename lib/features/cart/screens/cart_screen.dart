@@ -5,7 +5,7 @@ import 'package:jumier/common/widgets/appbars.dart';
 import 'package:jumier/common/widgets/custom_button.dart';
 import 'package:jumier/common/widgets/custom_network_image.dart';
 import 'package:jumier/common/widgets/custom_scroll_behaviour.dart';
-import 'package:jumier/constants.dart';
+import 'package:jumier/global_variables.dart';
 import 'package:jumier/features/cart/widgets/add_button.dart';
 import 'package:jumier/features/cart/widgets/cart_item.dart';
 import 'package:jumier/features/cart/widgets/recently_viewed.dart';

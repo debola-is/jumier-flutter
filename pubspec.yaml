@@ -46,6 +46,7 @@ dependencies:
   connectivity_plus: ^3.0.2
   file_picker: ^5.2.5
   badges: ^2.0.3
+  http: ^0.13.5
 
 dev_dependencies:
   flutter_test:

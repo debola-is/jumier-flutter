@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:jumier/common/widgets/custom_button.dart';
 import 'package:jumier/common/widgets/custom_network_image.dart';
-import 'package:jumier/constants.dart';
+import 'package:jumier/global_variables.dart';
 
 class RecentlyViewedItem extends StatefulWidget {
   const RecentlyViewedItem({

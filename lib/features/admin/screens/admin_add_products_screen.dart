@@ -10,7 +10,7 @@ import 'package:jumier/common/widgets/appbars.dart';
 import 'package:jumier/common/widgets/custom_button.dart';
 import 'package:jumier/common/widgets/custom_scroll_behaviour.dart';
 import 'package:jumier/common/widgets/custom_text_field.dart';
-import 'package:jumier/constants.dart';
+import 'package:jumier/global_variables.dart';
 import 'package:jumier/features/admin/widgets/variant_field.dart';
 import 'package:jumier/models/product.dart';
 
@@ -291,7 +291,7 @@ class _AdminAddProductScreenState extends State<AdminAddProductScreen> {
                                       showSnackBar(
                                           context,
                                           'Please input a valid price',
-                                          'error');
+                                          ErrorType.error);
                                     }
                                   }
                                 });
@@ -395,7 +395,7 @@ class _AdminAddProductScreenState extends State<AdminAddProductScreen> {
                               showSnackBar(
                                   context,
                                   'Cannot add more than 10 variants for a single product',
-                                  'error');
+                                  ErrorType.error);
                             }
                           },
                           shape: CircleBorder(
@@ -518,11 +518,18 @@ class _AdminAddProductScreenState extends State<AdminAddProductScreen> {
       return;
     }
     showSnackBar(
-        context, "You can only add a maximum of 10 product pictures", "info");
+      context,
+      "You can only add a maximum of 10 product pictures",
+      ErrorType.warning,
+    );
   }
 
   void addProduct() {
-    showSnackBar(context, 'Product Added Successfully', "success");
+    showSnackBar(
+      context,
+      'Product Added Successfully',
+      ErrorType.success,
+    );
     // if (_adminProductFormKey.currentState!.validate() && images.isNotEmpty) {
     //   //Because form validation does not cover our image selection, we also need to chack if selected images is not empty.
     //   try {
@@ -557,7 +564,11 @@ class _AdminAddProductScreenState extends State<AdminAddProductScreen> {
       try {
         images.remove(image);
       } catch (e) {
-        showSnackBar(context, 'Could not delete image. Try again', 'error');
+        showSnackBar(
+          context,
+          'Could not delete image. Try again',
+          ErrorType.error,
+        );
       }
 
       if (mounted) {

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:jumier/common/widgets/custom_button.dart';
 import 'package:jumier/common/widgets/custom_network_image.dart';
-import 'package:jumier/constants.dart';
+import 'package:jumier/global_variables.dart';
 import 'package:jumier/features/cart/widgets/add_button.dart';
 import 'package:jumier/features/cart/widgets/out_of_stock.dart';
 

@@ -1,8 +1,15 @@
+import 'dart:convert';
 import 'dart:io';
-
+import 'package:http/http.dart' as http;
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
-import 'package:jumier/constants.dart';
+import 'package:jumier/global_variables.dart';
+
+enum ErrorType {
+  error,
+  success,
+  warning,
+}
 
 Widget freeDeliveryBadge() {
   return Container(
@@ -233,15 +240,15 @@ Future<List<File>> selectImages() async {
 void showSnackBar(
   BuildContext context,
   String text,
-  String type,
+  ErrorType type,
 ) {
   ScaffoldMessenger.of(context).showSnackBar(
     SnackBar(
       padding: const EdgeInsets.all(15),
       duration: const Duration(milliseconds: 1500),
-      backgroundColor: type == "error"
+      backgroundColor: type == ErrorType.error
           ? const Color.fromARGB(255, 249, 225, 227)
-          : type == "success"
+          : type == ErrorType.success
               ? const Color.fromARGB(255, 236, 249, 236)
               : const Color.fromARGB(255, 250, 248, 229),
       behavior: SnackBarBehavior.fixed,
@@ -253,9 +260,9 @@ void showSnackBar(
               text,
               style: TextStyle(
                 fontStyle: FontStyle.italic,
-                color: type == "error"
+                color: type == ErrorType.error
                     ? Colors.red.shade900
-                    : type == "success"
+                    : type == ErrorType.success
                         ? Colors.green.shade900
                         : Colors.black,
                 overflow: TextOverflow.ellipsis,
@@ -263,14 +270,14 @@ void showSnackBar(
             ),
           ),
           Icon(
-            type == "error"
+            type == ErrorType.error
                 ? Icons.error_outline_outlined
-                : type == "success"
+                : type == ErrorType.success
                     ? Icons.check_outlined
                     : Icons.info_outline,
-            color: type == "error"
+            color: type == ErrorType.error
                 ? const Color.fromARGB(255, 168, 0, 0)
-                : type == "success"
+                : type == ErrorType.success
                     ? const Color.fromARGB(255, 18, 95, 23)
                     : Colors.black,
             size: 18,
@@ -279,4 +286,37 @@ void showSnackBar(
       ),
     ),
   );
+}
+
+void httpErrorHandler({
+  required http.Response response,
+  required BuildContext context,
+  required VoidCallback onSuccess,
+}) {
+  switch (response.statusCode) {
+    case 200:
+      onSuccess();
+      break;
+    case 400:
+      showSnackBar(
+        context,
+        '${jsonDecode(response.body)['error']}',
+        ErrorType.error,
+      );
+      break;
+    case 500:
+      showSnackBar(
+        context,
+        '${jsonDecode(response.body)['error']}',
+        ErrorType.error,
+      );
+      break;
+    default:
+      showSnackBar(
+        context,
+        'Error occured: ${response.body}',
+        ErrorType.warning,
+      );
+      break;
+  }
 }

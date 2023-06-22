@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jumier/common/widgets/appbars.dart';
-import 'package:jumier/constants.dart';
+import 'package:jumier/global_variables.dart';
 
 class VouchersScreen extends StatelessWidget {
   static const routeName = './user/account/vouchers';

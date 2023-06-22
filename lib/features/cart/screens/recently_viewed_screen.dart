@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jumier/common/widgets/appbars.dart';
-import 'package:jumier/constants.dart';
+import 'package:jumier/global_variables.dart';
 import 'package:jumier/features/cart/widgets/cart_item.dart';
 import 'package:jumier/features/cart/widgets/recently_viewed_item.dart';
 

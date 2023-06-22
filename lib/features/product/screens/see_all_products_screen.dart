@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jumier/common/widgets/appbars.dart';
-import 'package:jumier/constants.dart';
+import 'package:jumier/global_variables.dart';
 import 'package:jumier/features/product/filter/filter_screen.dart';
 import 'package:jumier/features/product/widgets/category_single_product.dart';
 

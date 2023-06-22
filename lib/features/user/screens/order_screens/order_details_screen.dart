@@ -3,7 +3,7 @@ import 'package:jumier/common/utils/utils.dart';
 import 'package:jumier/common/widgets/appbars.dart';
 import 'package:jumier/common/widgets/custom_button.dart';
 import 'package:jumier/common/widgets/custom_network_image.dart';
-import 'package:jumier/constants.dart';
+import 'package:jumier/global_variables.dart';
 import 'package:jumier/features/user/screens/order_screens/order_tracking_screen.dart';
 import 'package:jumier/features/user/widgets/info_tab.dart';
 import 'package:jumier/models/order.dart';

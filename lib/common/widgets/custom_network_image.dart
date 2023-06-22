@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:jumier/constants.dart';
+import 'package:jumier/global_variables.dart';
 
 class CustomNetworkImage extends StatelessWidget {
   final String imageSource;

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:jumier/common/widgets/custom_button.dart';
-import 'package:jumier/constants.dart';
+import 'package:jumier/global_variables.dart';
 import 'package:jumier/features/product/filter/select_options_screen.dart';
 import 'package:jumier/features/product/filter/widgets/filter_appbar.dart';
 import 'package:jumier/features/user/widgets/account_action.dart';

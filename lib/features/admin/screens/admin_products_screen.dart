@@ -3,7 +3,7 @@ import 'package:flutter/rendering.dart';
 import 'package:jumier/common/widgets/appbars.dart';
 import 'package:jumier/common/widgets/custom_loaders.dart';
 import 'package:jumier/common/widgets/custom_scroll_behaviour.dart';
-import 'package:jumier/constants.dart';
+import 'package:jumier/global_variables.dart';
 import 'package:jumier/features/admin/screens/admin_add_products_screen.dart';
 import 'package:jumier/features/product/screens/see_all_products_screen.dart';
 import 'package:jumier/features/product/widgets/category_single_product.dart';

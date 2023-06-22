@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:jumier/common/widgets/appbars.dart';
 import 'package:jumier/features/home/widgets/carousel.dart';
 import 'package:jumier/common/widgets/custom_loaders.dart';
-import 'package:jumier/constants.dart';
+import 'package:jumier/global_variables.dart';
 import 'package:jumier/features/home/widgets/collections.dart';
 import 'package:jumier/features/home/widgets/flash_sales.dart';
 import 'package:jumier/features/home/widgets/home_categories.dart';
@@ -50,7 +50,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 color: Colors.red.shade800,
                 child: const Center(
                   child: Text(
-                    'Free Delivery in Lagos, Ibadan & Abuja',
+                    'This is a demo application!',
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 14,

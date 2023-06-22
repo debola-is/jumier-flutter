@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:jumier/constants.dart';
+import 'package:jumier/global_variables.dart';
 import 'package:jumier/features/user/widgets/single_order_widget.dart';
 
 class OpenOrdersScreen extends StatelessWidget {

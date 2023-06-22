@@ -2,7 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:jumier/common/widgets/appbars.dart';
-import 'package:jumier/constants.dart';
+import 'package:jumier/global_variables.dart';
 
 class ProductDescriptionScreen extends StatelessWidget {
   final String description;

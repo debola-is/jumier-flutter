@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:jumier/common/widgets/custom_scroll_behaviour.dart';
 import 'package:jumier/common/widgets/appbars.dart';
-import 'package:jumier/constants.dart';
+import 'package:jumier/global_variables.dart';
 import 'package:jumier/features/home/widgets/sub_category.dart';
 import 'package:jumier/features/product/screens/see_all_products_screen.dart';
 

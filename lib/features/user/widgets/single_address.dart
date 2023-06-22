@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:jumier/constants.dart';
+import 'package:jumier/global_variables.dart';
 import 'package:jumier/features/user/screens/add_new_address.dart';
 
 class SingleAddress extends StatelessWidget {

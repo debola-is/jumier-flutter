@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:jumier/constants.dart';
+import 'package:jumier/global_variables.dart';
 import 'package:jumier/features/product/filter/widgets/filter_appbar.dart';
 import 'package:jumier/features/user/widgets/account_action.dart';
 

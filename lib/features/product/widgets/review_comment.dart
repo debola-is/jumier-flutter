@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import 'package:jumier/constants.dart';
+import 'package:jumier/global_variables.dart';
 
 class ReviewComment extends StatelessWidget {
   //TODO: Uncomment these fields and supply appropriate inputs in the product_reviews_screen

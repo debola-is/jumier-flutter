@@ -6,6 +6,8 @@ import 'package:jumier/features/home/screens/category_screen.dart';
 import 'package:jumier/features/home/screens/home_screen.dart';
 import 'package:jumier/features/user/screens/account_screen.dart';
 
+String serverUrl = "http://localhost:3000";
+
 Color shadeOfBlack = Colors.black.withOpacity(0.85);
 Color backgroundGrey = Colors.grey.shade100;
 Color shadeOfOrange = const Color.fromRGBO(251, 178, 21, 1);

@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:jumier/common/utils/error_page_body.dart';
-import 'package:jumier/constants.dart';
+import 'package:jumier/global_variables.dart';
 import 'package:jumier/features/feed/screens/feed_screen.dart';
 import 'package:jumier/features/help/screens/help_screen.dart';
 import 'package:jumier/features/home/screens/category_screen.dart';

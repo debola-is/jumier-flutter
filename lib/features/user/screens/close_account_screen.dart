@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:jumier/common/widgets/appbars.dart';
 import 'package:jumier/common/widgets/custom_button.dart';
 import 'package:jumier/common/widgets/custom_scroll_behaviour.dart';
-import 'package:jumier/constants.dart';
+import 'package:jumier/global_variables.dart';
 
 class CloseAccountScreen extends StatefulWidget {
   static const routeName = './user/account/close-account';
