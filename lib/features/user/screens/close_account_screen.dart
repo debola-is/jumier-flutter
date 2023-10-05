@@ -1,3 +1,5 @@
+import 'dart:developer' show log;
+
 import 'package:flutter/material.dart';
 import 'package:jumier/common/widgets/appbars.dart';
 import 'package:jumier/common/widgets/custom_button.dart';
@@ -126,7 +128,7 @@ class _CloseAccountScreenState extends State<CloseAccountScreen> {
                       child: CustomButton(
                         text: 'close my account',
                         onTap: () {
-                          print('object');
+                          log('object');
                         },
                         enabled: _confirmDelete,
                       ),
