@@ -9,10 +9,12 @@ class User {
   final String lastName;
   final String phoneNumber;
   final String email;
+  final String password;
   final List<Address>? addresses;
   final int defaultAddress;
   final String token;
   final String id;
+  final String userType;
   final List<Product>? cart;
   final List<Product>? recentlyViewed;
   final List<Product>? savedItems;
@@ -24,9 +26,11 @@ class User {
     required this.lastName,
     required this.phoneNumber,
     required this.email,
+    required this.password,
     required this.addresses,
     required this.token,
     required this.id,
+    required this.userType,
     required this.cart,
     required this.recentlyViewed,
     required this.savedItems,
@@ -41,6 +45,7 @@ class User {
       lastName: map['lastName'] ?? '',
       phoneNumber: map['phoneNumber'] ?? '',
       email: map['email'] ?? '',
+      password: map['password'] ?? '',
       addresses: map['addresses'] != null
           ? List<Address>.from(
               map['addresses']?.map(
@@ -51,6 +56,7 @@ class User {
       defaultAddress: map['defaultAddress'] ?? 0,
       token: map['token'] ?? '',
       id: map['_id'] ?? '',
+      userType: map['userType'] ?? '',
       cart: map['cart'] != null
           ? List<Product>.from(
               map['cart']?.map(
@@ -82,10 +88,12 @@ class User {
     data['lastName'] = lastName;
     data['phoneNumber'] = phoneNumber;
     data['email'] = email;
+    data['password'] = password;
     data['addresses'] = addresses;
     data['defaultAddress'] = defaultAddress;
     data['token'] = token;
     data['id'] = id;
+    data['userType'] = userType;
     data['cart'] = cart;
     data['searchHistory'] = searchHistory;
     return data;
