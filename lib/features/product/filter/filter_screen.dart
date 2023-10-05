@@ -81,7 +81,7 @@ class _FilterScreenState extends State<FilterScreen> {
                     context,
                     SelectOptionScreen.routeName,
                     arguments: {
-                      'options': categoryAndSubCategories.keys.toList(),
+                      'options': categoryStructure.keys.toList(),
                       'title': 'Category',
                       'selectedOption': _selectedCategory,
                     },
@@ -94,7 +94,7 @@ class _FilterScreenState extends State<FilterScreen> {
                 title: 'Category',
                 trailingSelected: _selectedCategory == null
                     ? null
-                    : categoryAndSubCategories.keys
+                    : categoryStructure.keys
                         .toList()[_selectedCategory!]
                         .toTitleCase(),
                 titleTextStyle: const TextStyle(
