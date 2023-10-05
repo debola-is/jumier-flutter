@@ -13,6 +13,7 @@ class CustomButton extends StatelessWidget {
   final double? borderRadius;
   final bool? enabled;
   final Widget? content;
+  final Color? color;
   const CustomButton({
     Key? key,
     this.text = 'Give custom text Parameter',
@@ -25,6 +26,7 @@ class CustomButton extends StatelessWidget {
     this.borderRadius = 5,
     this.enabled = true,
     this.content,
+    this.color,
   }) : super(key: key);
 
   @override
@@ -39,7 +41,7 @@ class CustomButton extends StatelessWidget {
               ? Colors.white
               : enabled == false
                   ? Colors.grey.shade400
-                  : shadeOfOrange,
+                  : color ?? shadeOfOrange,
           boxShadow: showShadows!
               ? const [
                   BoxShadow(
