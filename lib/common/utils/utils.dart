@@ -11,6 +11,11 @@ enum ErrorType {
   warning,
 }
 
+enum Layout {
+  grid,
+  list,
+}
+
 Widget freeDeliveryBadge() {
   return Container(
     padding: const EdgeInsets.all(3),
@@ -219,12 +224,12 @@ MaterialButton customButton({
   );
 }
 
-Future<List<File>> selectImages() async {
+Future<List<File>> selectImages({bool? allowMultiple}) async {
   List<File> images = [];
   try {
     var files = await FilePicker.platform.pickFiles(
       type: FileType.image,
-      allowMultiple: true,
+      allowMultiple: allowMultiple ?? true,
     );
     if (files != null && files.files.isNotEmpty) {
       for (int i = 0; i < files.files.length; i++) {
@@ -296,6 +301,7 @@ void httpErrorHandler({
   switch (response.statusCode) {
     case 200:
       onSuccess();
+
       break;
     case 400:
       showSnackBar(
