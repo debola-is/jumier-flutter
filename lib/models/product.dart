@@ -6,17 +6,20 @@ class Product {
   final String name;
   final String brand;
   final String description;
-  final double price;
+  final double? price;
   final double? oldPrice;
-  final int quantity;
+  final int? quantity;
   final String sellerName;
   final List<String> images;
   final String category;
   final String subCategory;
   final String subSubCategory;
+  final String timeStamp;
   final String? id;
   final List<Rating>? ratings;
   final List<ProductVariant>? variants;
+  final bool isExpressAvailable;
+  final String fileStoreId;
 
   Product({
     required this.name,
@@ -29,10 +32,13 @@ class Product {
     required this.category,
     required this.subCategory,
     required this.subSubCategory,
+    required this.timeStamp,
     required this.quantity,
     this.oldPrice,
     this.ratings,
     this.variants,
+    required this.isExpressAvailable,
+    required this.fileStoreId,
   });
 
   factory Product.fromMap(Map<String, dynamic> map) {
@@ -44,10 +50,11 @@ class Product {
       quantity: map['quantity']?.toInt() ?? 0,
       oldPrice: map['oldPrice']?.toDouble() ?? 0.0,
       sellerName: map['sellerName'] ?? '',
-      images: map['images'] ?? [],
+      images: List<String>.from(map['images']),
       category: map['category'] ?? '',
       subCategory: map['subCategory'] ?? '',
       subSubCategory: map['subSubCategory'] ?? '',
+      timeStamp: map['timeStamp'] ?? '',
       id: map['_id'] ?? '',
       ratings: map['ratings'] != null
           ? List<Rating>.from(
@@ -55,14 +62,16 @@ class Product {
                 (x) => Rating.fromMap(x),
               ),
             )
-          : null,
+          : [],
       variants: map['variants'] != null
           ? List<ProductVariant>.from(
               map['variants']?.map(
                 (x) => ProductVariant.fromMap(x),
               ),
             )
-          : null,
+          : [],
+      isExpressAvailable: map["isExpressAvailable"] ?? false,
+      fileStoreId: map["fileStoreId"] ?? "",
     );
   }
 
@@ -79,8 +88,12 @@ class Product {
     data['category'] = category;
     data['subCategory'] = subCategory;
     data['subSubCategory'] = subSubCategory;
+    data['timeStamp'] = timeStamp;
     data['_id'] = id;
     data['variants'] = variants;
+    data["isExpressAvailable"] = isExpressAvailable;
+    data["fileStoreId"] = fileStoreId;
+
     return data;
   }
 
