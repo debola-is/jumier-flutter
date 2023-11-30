@@ -23,8 +23,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
 
   @override
   Widget build(BuildContext context) {
-    String activeCategory =
-        categoryAndSubCategories.keys.toList()[_activeIndex];
+    String activeCategory = categoryStructure.keys.toList()[_activeIndex];
     return Scaffold(
         appBar: getSearchAppbar(context: context),
         backgroundColor: backgroundGrey,
@@ -35,7 +34,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
               width: 120,
               height: double.infinity,
               child: ListView.builder(
-                itemCount: categoryAndSubCategories.keys.length,
+                itemCount: categoryStructure.keys.length,
                 itemBuilder: (context, index) => GestureDetector(
                   onTap: () {
                     changeActiveCategory(index);
@@ -57,9 +56,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
                     height: 70,
                     child: Center(
                       child: Text(
-                        categoryAndSubCategories.keys
-                            .toList()[index]
-                            .toTitleCase(),
+                        categoryStructure.keys.toList()[index].toTitleCase(),
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           fontSize: 12,
@@ -114,15 +111,14 @@ class _CategoryScreenState extends State<CategoryScreen> {
                         ),
                       ),
                       for (int i = 0;
-                          i < categoryAndSubCategories[activeCategory]!.length;
+                          i < categoryStructure[activeCategory]!.length;
                           i++)
                         SubCategory(
-                          subCategoryName:
-                              categoryAndSubCategories[activeCategory]!
-                                  .keys
-                                  .toList()[i],
+                          subCategoryName: categoryStructure[activeCategory]!
+                              .keys
+                              .toList()[i],
                           subSubCategoryNames:
-                              categoryAndSubCategories[activeCategory]!
+                              categoryStructure[activeCategory]!
                                   .values
                                   .toList()[i],
                         ),
@@ -136,7 +132,10 @@ class _CategoryScreenState extends State<CategoryScreen> {
   }
 
   void navigateToAllCategoryProducts() {
-    Navigator.pushNamed(context, SeeAllProductsScreen.routeName,
-        arguments: categoryAndSubCategories.keys.toList()[_activeIndex]);
+    Navigator.pushNamed(context, SeeAllProductsScreen.routeName, arguments: {
+      "category": categoryStructure.keys.toList()[_activeIndex],
+      "subCategory": "",
+      "subSubCategory": "",
+    });
   }
 }

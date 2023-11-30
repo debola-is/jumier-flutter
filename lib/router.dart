@@ -1,16 +1,16 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:jumier/global_variables.dart';
 import 'package:jumier/features/admin/screens/admin_add_products_screen.dart';
 import 'package:jumier/features/admin/screens/admin_products_screen.dart';
+import 'package:jumier/features/auth/sign_in_screen.dart';
 import 'package:jumier/features/cart/screens/cart_screen.dart';
 import 'package:jumier/features/cart/screens/recently_viewed_screen.dart';
 import 'package:jumier/features/cart/screens/saved_items_screen.dart';
 import 'package:jumier/features/product/filter/filter_screen.dart';
 import 'package:jumier/features/product/filter/select_options_screen.dart';
 import 'package:jumier/features/product/screens/product_details_screen.dart';
-import 'package:jumier/features/product/screens/verified_customer_feedback.dart';
 import 'package:jumier/features/product/screens/see_all_products_screen.dart';
+import 'package:jumier/features/product/screens/verified_customer_feedback.dart';
 import 'package:jumier/features/user/screens/add_new_address.dart';
 import 'package:jumier/features/user/screens/address_book_screen.dart';
 import 'package:jumier/features/user/screens/all_orders_screen.dart';
@@ -22,6 +22,8 @@ import 'package:jumier/features/user/screens/rate_product_screen.dart';
 import 'package:jumier/features/user/screens/recently_searched_screen.dart';
 import 'package:jumier/features/user/screens/vouchers_screen.dart';
 import 'package:jumier/general_home.dart';
+import 'package:jumier/global_variables.dart';
+import 'package:jumier/models/product.dart';
 
 Route<dynamic> generateRoute(RouteSettings routeSettings) {
   switch (routeSettings.name) {
@@ -33,15 +35,19 @@ Route<dynamic> generateRoute(RouteSettings routeSettings) {
         ),
       );
     case SeeAllProductsScreen.routeName:
-      var categoryName = routeSettings.arguments as String;
+      var info = routeSettings.arguments as Map<String, String>;
       return CupertinoPageRoute(
-        builder: (_) => SeeAllProductsScreen(categoryName: categoryName),
+        builder: (_) => SeeAllProductsScreen(
+          category: info["category"]!,
+          subCategory: info["subCategory"]!,
+          subSubCategory: info["subSubCategory"]!,
+        ),
       );
 
     case ProductDetailsScreen.routeName:
-      var productName = routeSettings.arguments as String;
+      Product detailsProduct = routeSettings.arguments as Product;
       return CupertinoPageRoute(
-        builder: (_) => ProductDetailsScreen(productName: productName),
+        builder: (_) => ProductDetailsScreen(product: detailsProduct),
       );
 
     case VerifiedCustomerFeedbackScreen.routeName:
@@ -77,11 +83,6 @@ Route<dynamic> generateRoute(RouteSettings routeSettings) {
     case RecentlyViewedScreen.routeName:
       return CupertinoPageRoute(
         builder: (_) => const RecentlyViewedScreen(),
-      );
-
-    case VerifiedCustomerFeedbackScreen.routeName:
-      return MaterialPageRoute(
-        builder: (_) => const VerifiedCustomerFeedbackScreen(),
       );
 
     case AdminProductsScreen.routeName:
@@ -139,6 +140,10 @@ Route<dynamic> generateRoute(RouteSettings routeSettings) {
     case CloseAccountScreen.routeName:
       return CupertinoPageRoute(
         builder: (_) => const CloseAccountScreen(),
+      );
+    case SignInScreen.routeName:
+      return CupertinoPageRoute(
+        builder: (_) => const SignInScreen(),
       );
 
     default:

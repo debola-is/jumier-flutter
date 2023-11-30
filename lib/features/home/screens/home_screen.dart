@@ -1,14 +1,14 @@
 import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:jumier/common/widgets/appbars.dart';
 import 'package:jumier/features/home/widgets/carousel.dart';
-import 'package:jumier/common/widgets/custom_loaders.dart';
-import 'package:jumier/global_variables.dart';
 import 'package:jumier/features/home/widgets/collections.dart';
 import 'package:jumier/features/home/widgets/flash_sales.dart';
 import 'package:jumier/features/home/widgets/home_categories.dart';
 import 'package:jumier/features/home/widgets/limited_stock_deals.dart';
 import 'package:jumier/features/home/widgets/top_deals.dart';
+import 'package:jumier/global_variables.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -39,7 +39,7 @@ class _HomeScreenState extends State<HomeScreen> {
       body: ModalProgressHUD(
         opacity: 0.6,
         color: backgroundGrey,
-        progressIndicator: const NetworkLoadingAnimation(),
+        progressIndicator: const CircularProgressIndicator(),
         inAsyncCall: _isLoading,
         child: SingleChildScrollView(
           child: Column(

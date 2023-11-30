@@ -1,17 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import 'package:jumier/common/utils/utils.dart';
 import 'package:jumier/common/widgets/appbars.dart';
 import 'package:jumier/common/widgets/custom_button.dart';
-import 'package:jumier/common/widgets/custom_network_image.dart';
 import 'package:jumier/common/widgets/custom_scroll_behaviour.dart';
-import 'package:jumier/global_variables.dart';
-import 'package:jumier/features/cart/widgets/add_button.dart';
 import 'package:jumier/features/cart/widgets/cart_item.dart';
 import 'package:jumier/features/cart/widgets/recently_viewed.dart';
 import 'package:jumier/features/cart/widgets/recommended_for_you.dart';
 import 'package:jumier/features/cart/widgets/saved_items.dart';
 import 'package:jumier/features/user/widgets/info_tab.dart';
+import 'package:jumier/global_variables.dart';
 
 class CartScreen extends StatefulWidget {
   static const routeName = './cart-screen';

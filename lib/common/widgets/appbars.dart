@@ -83,43 +83,43 @@ PreferredSizeWidget getAppbar({
                   .toList()
                   .map(
                     (e) => PopupMenuItem(
+                      onTap: () {
+                        // Navigator.pushNamedAndRemoveUntil(
+                        //   context,
+                        //   GeneralHome.routeName,
+                        //   (route) => true,
+                        //   arguments:
+                        //       generalHomeCategories.keys.toList().indexOf(e),
+                        // );
+                        Navigator.pushNamed(context, GeneralHome.routeName,
+                            arguments:
+                                generalHomeCategories.keys.toList().indexOf(e));
+                      },
                       padding: const EdgeInsets.all(0),
                       height: 40,
                       child: Container(
                         color: Colors.white,
                         padding: const EdgeInsets.symmetric(horizontal: 10),
                         width: screenWidth(context) / 2,
-                        child: GestureDetector(
-                          onTap: () {
-                            Navigator.pushNamedAndRemoveUntil(
-                              context,
-                              GeneralHome.routeName,
-                              (route) => false,
-                              arguments: generalHomeCategories.keys
-                                  .toList()
-                                  .indexOf(e),
-                            );
-                          },
-                          child: Row(
-                            children: [
-                              Icon(
-                                generalHomeCategories[e]![1],
+                        child: Row(
+                          children: [
+                            Icon(
+                              generalHomeCategories[e]![1],
+                              color: Colors.black87,
+                              size: 22,
+                            ),
+                            const SizedBox(
+                              width: 10,
+                            ),
+                            Text(
+                              e,
+                              style: const TextStyle(
                                 color: Colors.black87,
-                                size: 22,
+                                fontSize: 14,
+                                fontWeight: FontWeight.w500,
                               ),
-                              const SizedBox(
-                                width: 10,
-                              ),
-                              Text(
-                                e,
-                                style: const TextStyle(
-                                  color: Colors.black87,
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w500,
-                                ),
-                              ),
-                            ],
-                          ),
+                            ),
+                          ],
                         ),
                       ),
                     ),

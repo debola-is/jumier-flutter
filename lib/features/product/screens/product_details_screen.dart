@@ -1,3 +1,4 @@
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:csc_picker/csc_picker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
@@ -8,19 +9,23 @@ import 'package:jumier/common/widgets/appbars.dart';
 import 'package:jumier/common/widgets/custom_button.dart';
 import 'package:jumier/common/widgets/custom_network_image.dart';
 import 'package:jumier/common/widgets/custom_scroll_behaviour.dart';
-import 'package:jumier/global_variables.dart';
 import 'package:jumier/features/cart/widgets/recently_viewed.dart';
 import 'package:jumier/features/cart/widgets/recommended_for_you.dart';
+import 'package:jumier/features/home/screens/home_screen.dart';
 import 'package:jumier/features/product/screens/product_description_screen.dart';
 import 'package:jumier/features/product/screens/verified_customer_feedback.dart';
 import 'package:jumier/features/user/widgets/info_tab.dart';
+import 'package:jumier/general_home.dart';
+import 'package:jumier/global_variables.dart';
+import 'package:jumier/models/product.dart';
+import 'package:jumier/services/product_services.dart';
 
 class ProductDetailsScreen extends StatefulWidget {
   static const routeName = '/product-details';
-  final String productName;
+  final Product product;
   const ProductDetailsScreen({
     super.key,
-    required this.productName,
+    required this.product,
   });
 
   @override
@@ -28,11 +33,34 @@ class ProductDetailsScreen extends StatefulWidget {
 }
 
 class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
-  String _state = '';
-  String _country = 'Nigeria';
   bool isInCart = false;
 
-  String _city = '';
+  List<Widget> getImages() {
+    List<Widget> compileVariantsImages() {
+      List<Widget> images = [];
+      for (int i = 0; i < widget.product.variants!.length; i++) {
+        var variant = widget.product.variants![i];
+        images.add(
+          CustomNetworkImage(
+              imageSource: variant.image, height: 200, width: 200),
+        );
+      }
+      return images;
+    }
+
+    return widget.product.variants!.isEmpty
+        ? widget.product.images
+            .map(
+              (e) => CustomNetworkImage(
+                imageSource: e,
+                height: 200,
+                width: 200,
+              ),
+            )
+            .toList()
+        : compileVariantsImages();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -54,11 +82,9 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                 width: double.infinity,
                 height: 300,
                 margin: const EdgeInsets.all(10),
-                child: const CustomNetworkImage(
-                  imageSource:
-                      'https://ng.jumia.is/unsafe/fit-in/500x500/filters:fill(white)/product/46/502258/1.jpg?4825',
-                  width: 350,
-                  height: 350,
+                child: CarouselSlider(
+                  items: getImages(),
+                  options: CarouselOptions(enableInfiniteScroll: false),
                 ),
               ),
               Container(
@@ -68,10 +94,10 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    officialStoreBadge(),
-                    const SizedBox(height: 10),
+                    // officialStoreBadge(),
+                    // const SizedBox(height: 10),
                     Text(
-                      'This is the product name'.toUpperCase(),
+                      widget.product.name.toUpperCase(),
                       style: const TextStyle(fontSize: 16),
                     ),
                     const SizedBox(height: 10),
@@ -84,7 +110,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                         GestureDetector(
                           onTap: () {},
                           child: Text(
-                            'Brand Name',
+                            widget.product.brand.toCapitalized(),
                             style:
                                 TextStyle(color: shadeOfOrange, fontSize: 12),
                           ),
@@ -93,24 +119,25 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                         GestureDetector(
                           onTap: () {},
                           child: Text(
-                            'Similar products from brand',
+                            'Similar products from ${widget.product.brand.toCapitalized()}',
                             style: TextStyle(color: shadeOfBlue, fontSize: 12),
                           ),
                         ),
                       ],
                     ),
                     const SizedBox(height: 10),
-                    freeDeliveryBadge(),
+                    if (widget.product.isExpressAvailable) freeDeliveryBadge(),
                     const SizedBox(height: 10),
-                    const Text(
-                      '₦ 3000',
-                      style: TextStyle(
+                    Text(
+                      '₦ ${widget.product.price?.round()}',
+                      style: const TextStyle(
                         fontSize: 24,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
                     const SizedBox(height: 5),
-                    unitsLeft(2),
+                    if (widget.product.quantity! < 11)
+                      unitsLeft(widget.product.quantity!),
                     const SizedBox(height: 20),
                     shippingCost(150),
                     GestureDetector(
@@ -120,7 +147,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                         style: TextStyle(color: shadeOfBlue),
                       ),
                     ),
-                    const SizedBox(height: 10),
+                    const SizedBox(height: 5),
                     InkWell(
                       onTap: () => Navigator.pushNamed(
                         context,
@@ -128,8 +155,10 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                       ),
                       child: Row(
                         children: [
+                          // Get Ratings for app
                           RatingBarIndicator(
-                            rating: 4.4,
+                            rating: ProductServices.calculateRatingsScore(
+                                widget.product),
                             itemSize: 16,
                             itemBuilder: (context, index) => const Icon(
                               Icons.star,
@@ -140,7 +169,9 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                             width: 10,
                           ),
                           Text(
-                            '52 ratings or No ratings available',
+                            widget.product.ratings!.isEmpty
+                                ? "No ratings yet"
+                                : "${widget.product.ratings!.length} rrating(s)",
                             style: TextStyle(color: shadeOfBlue),
                           ),
                           const Expanded(
@@ -280,36 +311,36 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
               const Divider(
                 height: 0,
               ),
-              Container(
-                color: Colors.white,
-                padding: const EdgeInsets.all(10),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Text(
-                      'Choose Location',
-                      style: TextStyle(fontWeight: FontWeight.bold),
-                    ),
-                    const SizedBox(
-                      height: 15,
-                    ),
-                    CSCPicker(
-                      defaultCountry: DefaultCountry.Nigeria,
-                      disableCountry: true,
-                      showCities: true,
-                      showStates: true,
-                      stateSearchPlaceholder: "State",
-                      citySearchPlaceholder: "City",
-                      stateDropdownLabel: "*State",
-                      cityDropdownLabel: "*City",
-                      onCityChanged: (value) => selectCity(value),
-                      onStateChanged: (value) => selectState(value),
-                      onCountryChanged: (value) => selectCountry(value),
-                      currentCountry: _country,
-                    ),
-                  ],
-                ),
-              ),
+              // Container(
+              //   color: Colors.white,
+              //   padding: const EdgeInsets.all(10),
+              //   child: Column(
+              //     crossAxisAlignment: CrossAxisAlignment.start,
+              //     children: [
+              //       const Text(
+              //         'Choose Location',
+              //         style: TextStyle(fontWeight: FontWeight.bold),
+              //       ),
+              //       const SizedBox(
+              //         height: 15,
+              //       ),
+              //       CSCPicker(
+              //         defaultCountry: DefaultCountry.Nigeria,
+              //         disableCountry: true,
+              //         showCities: true,
+              //         showStates: true,
+              //         stateSearchPlaceholder: "State",
+              //         citySearchPlaceholder: "City",
+              //         stateDropdownLabel: "*State",
+              //         cityDropdownLabel: "*City",
+              //         onCityChanged: (value) => selectCity(value),
+              //         onStateChanged: (value) => selectState(value),
+              //         onCountryChanged: (value) => selectCountry(value),
+              //         currentCountry: _country,
+              //       ),
+              //     ],
+              //   ),
+              // ),
               const InfoTab(description: 'PRODUCT DETAILS'),
               Container(
                 margin: const EdgeInsets.symmetric(horizontal: 5),
@@ -321,11 +352,10 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                         Navigator.push(
                             context,
                             CupertinoPageRoute(
-                              builder: (context) =>
-                                  const ProductDescriptionScreen(
-                                      description: 'description',
-                                      keyFeatures: 'keyFeatures',
-                                      specifications: 'specifications'),
+                              builder: (context) => ProductDescriptionScreen(
+                                  description: widget.product.description,
+                                  keyFeatures: 'keyFeatures',
+                                  specifications: 'specifications'),
                             ));
                       },
                       child: Padding(
@@ -351,13 +381,15 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                       height: 10,
                       thickness: 2,
                     ),
-                    const Padding(
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+                    Container(
+                      alignment: Alignment.topLeft,
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 15, vertical: 10),
                       child: Text(
-                        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+                        widget.product.description,
                         maxLines: 5,
                         overflow: TextOverflow.ellipsis,
+                        style: const TextStyle(height: 1.5),
                       ),
                     ),
                   ],
@@ -379,7 +411,13 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
         child: Row(
           children: [
             CustomButton(
-              onTap: () {},
+              onTap: () {
+                Navigator.pushNamed(
+                  context,
+                  GeneralHome.routeName,
+                  arguments: 0,
+                );
+              },
               height: 40,
               width: 40,
               content: Icon(
@@ -484,27 +522,27 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
     );
   }
 
-  void selectCountry(String? selectedValue) {
-    if (selectedValue is String) {
-      setState(() {
-        _country = selectedValue;
-      });
-    }
-  }
+  // void selectCountry(String? selectedValue) {
+  //   if (selectedValue is String) {
+  //     setState(() {
+  //       _country = selectedValue;
+  //     });
+  //   }
+  // }
 
-  void selectState(String? selectedValue) {
-    if (selectedValue is String) {
-      setState(() {
-        _state = selectedValue;
-      });
-    }
-  }
+  // void selectState(String? selectedValue) {
+  //   if (selectedValue is String) {
+  //     setState(() {
+  //       _state = selectedValue;
+  //     });
+  //   }
+  // }
 
-  void selectCity(String? selectedValue) {
-    if (selectedValue is String) {
-      setState(() {
-        _city = selectedValue;
-      });
-    }
-  }
+  // void selectCity(String? selectedValue) {
+  //   if (selectedValue is String) {
+  //     setState(() {
+  //       _city = selectedValue;
+  //     });
+  //   }
+  // }
 }

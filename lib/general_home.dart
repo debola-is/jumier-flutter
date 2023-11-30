@@ -1,16 +1,16 @@
 import 'dart:async';
 import 'dart:developer' as developer;
+
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:jumier/common/utils/error_page_body.dart';
-import 'package:jumier/global_variables.dart';
 import 'package:jumier/features/feed/screens/feed_screen.dart';
 import 'package:jumier/features/help/screens/help_screen.dart';
 import 'package:jumier/features/home/screens/category_screen.dart';
 import 'package:jumier/features/home/screens/home_screen.dart';
 import 'package:jumier/features/user/screens/account_screen.dart';
+import 'package:jumier/global_variables.dart';
 
 int _currentPage = 0;
 final List<Widget> _pages = [

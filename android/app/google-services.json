@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "56462639050",
+    "project_id": "jumier-flutter",
+    "storage_bucket": "jumier-flutter.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:56462639050:android:750ba9b21a4a39055a9933",
+        "android_client_info": {
+          "package_name": "com.example.jumier"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "56462639050-h54rif5ltfm9d16muviuvdhnin869h81.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB01gBk4mf7nXWK2qOJuwcPrwvq4OIhZj0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "56462639050-h54rif5ltfm9d16muviuvdhnin869h81.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

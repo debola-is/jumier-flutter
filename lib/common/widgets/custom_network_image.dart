@@ -26,6 +26,7 @@ class CustomNetworkImage extends StatelessWidget {
       imageCacheWidth: width.floor(),
       placeholderCacheHeight: height.floor(),
       placeholderCacheWidth: width.floor(),
+      placeholderFit: fit,
       imageErrorBuilder: (context, error, stackTrace) => SizedBox(
         height: height,
         width: width,

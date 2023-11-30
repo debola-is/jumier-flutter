@@ -4,6 +4,7 @@ import 'package:jumier/common/widgets/custom_button.dart';
 import 'package:jumier/global_variables.dart';
 import 'package:jumier/features/user/widgets/account_action.dart';
 import 'package:jumier/features/user/widgets/info_tab.dart';
+import 'package:jumier/services/file_io.dart';
 
 class HelpScreen extends StatefulWidget {
   const HelpScreen({super.key});
@@ -13,7 +14,31 @@ class HelpScreen extends StatefulWidget {
 }
 
 class _HelpScreenState extends State<HelpScreen> {
+  final FileIoServices _fileIoServices = FileIoServices();
+  int? _cacheSize;
   bool pushNotif = false;
+
+  Future<void> _getCacheSize() async {
+    _cacheSize = (await _fileIoServices.getCacheSize()) ~/ (1024 * 1024);
+    if (mounted) {
+      setState(() {});
+    }
+  }
+
+  Future<void> _clearCache() async {
+    await _fileIoServices.deleteCacheDir();
+    _getCacheSize();
+    if (mounted) {
+      setState(() {});
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _getCacheSize();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -113,9 +138,11 @@ class _HelpScreenState extends State<HelpScreen> {
                   enabled: false,
                 ),
                 AccountAction(
-                  onTap: () {},
-                  title: 'Cache Used: 0 B',
-                  enabled: false,
+                  onTap: _clearCache,
+                  title: _cacheSize == null
+                      ? 'Cache Used: 0 B'
+                      : 'Cache Used: $_cacheSize MB',
+                  enabled: _cacheSize == null || _cacheSize == 0 ? false : true,
                   trailingText: 'CLEAR',
                 ),
               ],

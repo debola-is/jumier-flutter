@@ -63,58 +63,58 @@ class ProductDescriptionScreen extends StatelessWidget {
                 ],
               ),
             ),
-            Container(
-              width: double.infinity,
-              margin: const EdgeInsets.fromLTRB(10, 10, 10, 0),
-              padding: const EdgeInsets.all(15.0),
-              color: Colors.white,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Text(
-                    'Key Features',
-                    style: TextStyle(
-                      fontWeight: FontWeight.w500,
-                      fontSize: 16.0,
-                    ),
-                  ),
-                  const SizedBox(height: 10),
-                  Text(
-                    description,
-                    style: const TextStyle(
-                      height: 1.5,
-                      fontSize: 14.0,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            Container(
-              width: double.infinity,
-              margin: const EdgeInsets.fromLTRB(10, 10, 10, 0),
-              padding: const EdgeInsets.all(15.0),
-              color: Colors.white,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Text(
-                    'Specifications',
-                    style: TextStyle(
-                      fontWeight: FontWeight.w500,
-                      fontSize: 16.0,
-                    ),
-                  ),
-                  const SizedBox(height: 10),
-                  Text(
-                    description,
-                    style: const TextStyle(
-                      height: 1.5,
-                      fontSize: 14.0,
-                    ),
-                  ),
-                ],
-              ),
-            ),
+            // Container(
+            //   width: double.infinity,
+            //   margin: const EdgeInsets.fromLTRB(10, 10, 10, 0),
+            //   padding: const EdgeInsets.all(15.0),
+            //   color: Colors.white,
+            //   child: Column(
+            //     crossAxisAlignment: CrossAxisAlignment.start,
+            //     children: [
+            //       const Text(
+            //         'Key Features',
+            //         style: TextStyle(
+            //           fontWeight: FontWeight.w500,
+            //           fontSize: 16.0,
+            //         ),
+            //       ),
+            //       const SizedBox(height: 10),
+            //       Text(
+            //         description,
+            //         style: const TextStyle(
+            //           height: 1.5,
+            //           fontSize: 14.0,
+            //         ),
+            //       ),
+            //     ],
+            //   ),
+            // ),
+            // Container(
+            //   width: double.infinity,
+            //   margin: const EdgeInsets.fromLTRB(10, 10, 10, 0),
+            //   padding: const EdgeInsets.all(15.0),
+            //   color: Colors.white,
+            //   child: Column(
+            //     crossAxisAlignment: CrossAxisAlignment.start,
+            //     children: [
+            //       const Text(
+            //         'Specifications',
+            //         style: TextStyle(
+            //           fontWeight: FontWeight.w500,
+            //           fontSize: 16.0,
+            //         ),
+            //       ),
+            //       const SizedBox(height: 10),
+            //       Text(
+            //         description,
+            //         style: const TextStyle(
+            //           height: 1.5,
+            //           fontSize: 14.0,
+            //         ),
+            //       ),
+            //     ],
+            //   ),
+            // ),
           ],
         ),
       ),
